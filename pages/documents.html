@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documents | Mohamed Said Digital Historical Archive</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#0f172a;
+    color:white;
+    margin:0;
+}
+header{
+    background:#111827;
+    padding:20px;
+    text-align:center;
+}
+h1{
+    color:#fbbf24;
+}
+#documents{
+    display:grid;
+    gap:20px;
+    padding:20px;
+}
+.card{
+    background:#1e293b;
+    padding:20px;
+    border-radius:12px;
+}
+button{
+    background:#fbbf24;
+    color:black;
+    border:none;
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>📄 Documents Archive</h1>
+<p>Mohamed Said Digital Historical Archive</p>
+</header>
+
+<div id="documents"></div>
+
+<script>
+
+fetch("../data/metadata/documents.json")
+.then(res=>res.json())
+.then(data=>{
+
+const container=document.getElementById("documents");
+
+data.forEach(doc=>{
+
+container.innerHTML+=`
+
+<div class="card">
+
+<h2>${doc.title}</h2>
+
+<p><b>Author:</b> ${doc.author}</p>
+
+<p><b>Year:</b> ${doc.year}</p>
+
+<p>${doc.description}</p>
+
+<button>Open Document</button>
+
+</div>
+
+`;
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

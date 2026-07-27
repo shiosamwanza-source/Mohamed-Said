@@ -1,0 +1,13 @@
+[
+  {
+    "id": "DOC-000001",
+    "title": "Mfano wa Nyaraka",
+    "author": "Mohamed Said",
+    "year": 1955,
+    "type": "pdf",
+    "category": "Historia",
+    "access": "research",
+    "description": "Mfano wa nyaraka.",
+    "s3Key": "research/documents/mfano.pdf"
+  }
+]
