@@ -12,25 +12,30 @@ body{
     color:white;
     font-family:Arial,sans-serif;
 }
+
 header{
     background:#111827;
     padding:25px;
     text-align:center;
 }
+
 h1{
     color:#fbbf24;
 }
+
 #documents{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
     gap:20px;
     padding:20px;
 }
+
 .card{
     background:#1e293b;
     padding:20px;
     border-radius:12px;
 }
+
 button{
     background:#fbbf24;
     color:black;
@@ -40,13 +45,13 @@ button{
     cursor:pointer;
     font-weight:bold;
 }
+
 button:hover{
     opacity:.9;
 }
 </style>
 
 </head>
-
 <body>
 
 <header>
@@ -59,16 +64,17 @@ button:hover{
 <script>
 
 fetch("/data/metadata/documents.json")
-.then(response=>response.json())
+.then(r=>r.json())
 .then(data=>{
 
 const container=document.getElementById("documents");
 
 data.forEach(doc=>{
 
-container.innerHTML += `
-<div class="card">
+const card=document.createElement("div");
+card.className="card";
 
+card.innerHTML=`
 <h2>${doc.title}</h2>
 
 <p><b>Author:</b> ${doc.author}</p>
@@ -77,22 +83,23 @@ container.innerHTML += `
 
 <p>${doc.description}</p>
 
-<button onclick="window.open('/'+doc.file,'_blank')">
-📖 Soma Document
-</button>
-
-</div>
+<button>Open Document</button>
 `;
+
+card.querySelector("button").onclick=function(){
+window.open("/"+doc.file,"_blank");
+};
+
+container.appendChild(card);
 
 });
 
 })
-.catch(error=>{
+.catch(err=>{
 
-document.getElementById("documents").innerHTML=
-"<h2>Documents hazijapatikana.</h2>";
+document.getElementById("documents").innerHTML="<h2>Documents hazikupatikana.</h2>";
 
-console.log(error);
+console.log(err);
 
 });
 
