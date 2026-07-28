@@ -1,13 +1,28 @@
-[
-  {
-    "id": "DOC-000001",
-    "title": "Mfano wa Nyaraka",
-    "author": "Mohamed Said",
-    "year": 1955,
-    "type": "pdf",
-    "category": "Historia",
-    "access": "research",
-    "description": "Mfano wa nyaraka.",
-    "s3Key": "research/documents/mfano.pdf"
-  }
-]
+{
+  "title": "ALLY SYKES, PETER COLMORE NA JIM BAILEY",
+  "author": "Mohamed Said Archive",
+  "year": "",
+  "description": "Hati ya kihistoria.",
+  "file": "documents/ALLY SYKES, PETER COLMORE NA JIM BAILEY.docx"
+},
+{
+  "title": "PETER COLMORE MZUNGU MSWAHILI WA KENYA NA TANGANYIKA",
+  "author": "Mohamed Said Archive",
+  "year": "",
+  "description": "Hati ya kihistoria.",
+  "file": "documents/PETER COLMORE MZUNGU MSWAHILI WA KENYA NA TANGANYIKA.pdf"
+},
+{
+  "title": "SIMULIZI ZA MAMA DAISY ED",
+  "author": "Mohamed Said Archive",
+  "year": "",
+  "description": "Hati ya kihistoria.",
+  "file": "documents/SIMULIZI ZA MAMA DAISY ED.pdf"
+},
+{
+  "title": "MKASA WA JOSEPH KASELLA BANTU NA PICHA YA WAASISI WA TANU",
+  "author": "Mohamed Said Archive",
+  "year": "",
+  "description": "Hati ya kihistoria.",
+  "file": "documents/MKASA WA JOSEPH KASELLA BANTU NA PICHA YA WAASISI WA TANU.docx"
+}
