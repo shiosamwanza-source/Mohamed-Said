@@ -1,46 +1,56 @@
-Open Document
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Documents | Mohamed Said Digital Historical Archive</title>
+<title>Documents Archive</title>
 
 <style>
 body{
+    margin:0;
     font-family:Arial,sans-serif;
     background:#0f172a;
     color:white;
-    margin:0;
 }
+
 header{
     background:#111827;
     padding:20px;
     text-align:center;
 }
-h1{
+
+header h1{
     color:#fbbf24;
+    margin:0;
 }
+
 #documents{
     display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
     gap:20px;
     padding:20px;
 }
+
 .card{
     background:#1e293b;
     padding:20px;
     border-radius:12px;
 }
+
+.card h2{
+    color:#fbbf24;
+}
+
 button{
     background:#fbbf24;
-    color:black;
+    color:#000;
     border:none;
-    padding:10px 15px;
+    padding:12px 20px;
     border-radius:8px;
     cursor:pointer;
+    font-weight:bold;
 }
 </style>
-
 </head>
 
 <body>
@@ -62,8 +72,7 @@ const container=document.getElementById("documents");
 
 data.forEach(doc=>{
 
-container.innerHTML+=`
-
+container.innerHTML += `
 <div class="card">
 
 <h2>${doc.title}</h2>
@@ -74,14 +83,19 @@ container.innerHTML+=`
 
 <p>${doc.description}</p>
 
-<button onclick="alert('Document itawekwa hivi karibuni.')">Soma Document</button>
+<a href="../${doc.file}" target="_blank">
+<button>Soma Document</button>
+</a>
 
 </div>
-
 `;
 
 });
 
+})
+.catch(err=>{
+document.getElementById("documents").innerHTML="<h2>Documents hazijapatikana.</h2>";
+console.error(err);
 });
 
 </script>
