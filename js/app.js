@@ -218,7 +218,174 @@ async loadCollections() {
    DOCUMENT CARD
 ========================================================== */
 
-documentCard(doc) {
+documentCard(doc) {/* ==========================================================
+   FEATURED PHOTOS
+========================================================== */
+
+async loadFeaturedPhotos() {
+
+    const container = document.querySelector("#featuredPhotos");
+
+    if (!container) return;
+
+    const photos = await this.loadJSON("data/photos.json");
+
+    if (!photos.length) {
+
+        container.innerHTML =
+            `<p class="empty-state">No photos available.</p>`;
+
+        return;
+
+    }
+
+    container.innerHTML = photos.slice(0, 8).map(photo => `
+
+        <div class="photo-card fade-up">
+
+            <img src="${photo.image}" alt="${photo.title}">
+
+            <div class="photo-info">
+
+                <h4>${photo.title}</h4>
+
+            </div>
+
+        </div>
+
+    `).join("");
+
+}
+
+/* ==========================================================
+   FEATURED VIDEOS
+========================================================== */
+
+async loadFeaturedVideos() {
+
+    const container = document.querySelector("#featuredVideos");
+
+    if (!container) return;
+
+    const videos = await this.loadJSON("data/videos.json");
+
+    if (!videos.length) {
+
+        container.innerHTML =
+            `<p class="empty-state">No videos available.</p>`;
+
+        return;
+
+    }
+
+    container.innerHTML = videos.slice(0, 6).map(video => `
+
+        <div class="video-card fade-up">
+
+            <img src="${video.thumbnail}" alt="${video.title}">
+
+            <div class="video-info">
+
+                <h4>${video.title}</h4>
+
+                <a href="${video.url}" target="_blank" class="btn-main">
+
+                    Watch
+
+                </a>
+
+            </div>
+
+        </div>
+
+    `).join("");
+
+}
+
+/* ==========================================================
+   FEATURED AUDIO
+========================================================== */
+
+async loadFeaturedAudio() {
+
+    const container = document.querySelector("#featuredAudio");
+
+    if (!container) return;
+
+    const audio = await this.loadJSON("data/audio.json");
+
+    if (!audio.length) {
+
+        container.innerHTML =
+            `<p class="empty-state">No audio available.</p>`;
+
+        return;
+
+    }
+
+    container.innerHTML = audio.slice(0, 6).map(item => `
+
+        <div class="audio-card fade-up">
+
+            <h4>${item.title}</h4>
+
+            <audio controls>
+
+                <source src="${item.file}" type="audio/mpeg">
+
+                Your browser does not support the audio element.
+
+            </audio>
+
+        </div>
+
+    `).join("");
+
+}
+
+/* ==========================================================
+   REFRESH APPLICATION
+========================================================== */
+
+async refresh() {
+
+    await Promise.all([
+
+        this.loadStatistics(),
+
+        this.loadFeaturedDocuments(),
+
+        this.loadLatestDocuments(),
+
+        this.loadCollections(),
+
+        this.loadFeaturedPhotos(),
+
+        this.loadFeaturedVideos(),
+
+        this.loadFeaturedAudio()
+
+    ]);
+
+}
+
+/* ==========================================================
+   APPLICATION INFO
+========================================================== */
+
+version() {
+
+    return {
+
+        name: "Mohamed Said Digital Historical Archive",
+
+        version: "1.0.0",
+
+        platform: "GitHub Pages"
+
+    };
+
+}
 
     return `
 
