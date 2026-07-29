@@ -802,3 +802,302 @@ max-width:500px;
 margin:auto;
 
 }
+/* ==========================================================
+   CARD ACTIONS
+========================================================== */
+
+.card-actions{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:15px;
+
+margin-top:22px;
+
+}
+
+.card-btn{
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:8px;
+
+padding:12px 18px;
+
+border-radius:12px;
+
+background:var(--surface);
+
+border:1px solid var(--border);
+
+color:var(--text);
+
+font-size:.9rem;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:var(--transition);
+
+}
+
+.card-btn:hover{
+
+background:var(--primary);
+
+color:#111;
+
+border-color:var(--primary);
+
+}
+
+.card-btn.primary{
+
+background:var(--primary);
+
+color:#111;
+
+}
+
+.card-btn.primary:hover{
+
+background:var(--primary-dark);
+
+}
+
+/* ==========================================================
+   STATUS BADGES
+========================================================== */
+
+.status-badge{
+
+display:inline-flex;
+
+align-items:center;
+
+padding:6px 12px;
+
+border-radius:50px;
+
+font-size:.75rem;
+
+font-weight:700;
+
+text-transform:uppercase;
+
+letter-spacing:.5px;
+
+}
+
+.badge-new{
+
+background:#16a34a;
+
+color:#fff;
+
+}
+
+.badge-featured{
+
+background:var(--primary);
+
+color:#111;
+
+}
+
+.badge-rare{
+
+background:#8b5cf6;
+
+color:#fff;
+
+}
+
+.badge-archived{
+
+background:#64748b;
+
+color:#fff;
+
+}
+
+/* ==========================================================
+   FAVORITE BUTTON
+========================================================== */
+
+.favorite-btn{
+
+position:absolute;
+
+top:18px;
+
+right:18px;
+
+width:44px;
+
+height:44px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border:none;
+
+border-radius:50%;
+
+background:rgba(0,0,0,.45);
+
+color:#fff;
+
+cursor:pointer;
+
+transition:var(--transition);
+
+z-index:10;
+
+}
+
+.favorite-btn:hover{
+
+background:#e11d48;
+
+transform:scale(1.1);
+
+}
+
+/* ==========================================================
+   DOWNLOAD BUTTON
+========================================================== */
+
+.download-btn{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:10px;
+
+padding:12px 18px;
+
+background:#2563eb;
+
+color:#fff;
+
+border-radius:12px;
+
+font-weight:600;
+
+transition:var(--transition);
+
+}
+
+.download-btn:hover{
+
+background:#1d4ed8;
+
+}
+
+/* ==========================================================
+   SHARE BUTTON
+========================================================== */
+
+.share-btn{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:10px;
+
+padding:12px 18px;
+
+background:#0f766e;
+
+color:#fff;
+
+border-radius:12px;
+
+font-weight:600;
+
+transition:var(--transition);
+
+}
+
+.share-btn:hover{
+
+background:#115e59;
+
+}
+
+/* ==========================================================
+   CARD FADE ANIMATION
+========================================================== */
+
+.card-enter{
+
+opacity:0;
+
+transform:translateY(30px);
+
+animation:cardFade .6s ease forwards;
+
+}
+
+@keyframes cardFade{
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ==========================================================
+   CARD HOVER BORDER
+========================================================== */
+
+.document-card::after,
+.photo-card::after,
+.video-card::after,
+.audio-card::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+bottom:0;
+
+width:0;
+
+height:3px;
+
+background:var(--primary);
+
+transition:width .35s ease;
+
+}
+
+.document-card:hover::after,
+.photo-card:hover::after,
+.video-card:hover::after,
+.audio-card:hover::after{
+
+width:100%;
+
+}
