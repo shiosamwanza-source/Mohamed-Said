@@ -21,8 +21,7 @@ const Search = {
 
         this.bindEvents();
 
-       this.loadDocuments();
-
+        this.loadDocuments();
 
     },
 
@@ -37,6 +36,10 @@ const Search = {
         this.searchButton = document.querySelector("#searchButton");
 
         this.resultsContainer = document.querySelector("#searchResults");
+
+        this.documents = [];
+
+        this.results = [];
 
     },
 
@@ -70,16 +73,6 @@ const Search = {
 
         }
 
-    },
-
-    /* ======================================================
-       SEARCH PLACEHOLDER
-    ====================================================== */
-
-    search() {
-
-        console.log("Search initialized.");
-
     }
 
 };
@@ -91,157 +84,5 @@ const Search = {
 document.addEventListener("DOMContentLoaded", () => {
 
     Search.init();
-       /* ======================================================
-       RENDER SEARCH RESULTS
-    ====================================================== */
-
-    renderResults() {
-
-        if (!this.resultsContainer) return;
-
-        if (!this.results || this.results.length === 0) {
-
-            this.resultsContainer.innerHTML = `
-
-                <div class="empty-state">
-
-                    <h3>No Results Found</h3>
-
-                    <p>Try using different keywords.</p>
-
-                </div>
-
-            `;
-
-            return;
-
-        }
-
-        this.resultsContainer.innerHTML = this.results
-            .map(doc => `
-
-                <article class="document-card">
-
-                    <div class="document-image">
-
-                        <img src="${doc.cover}" alt="${doc.title}">
-
-                    </div>
-
-                    <div class="document-content">
-
-                        <span class="badge">${doc.category}</span>
-
-                        <h3>${doc.title}</h3>
-
-                        <p>${doc.description}</p>
-
-                        <div class="card-footer">
-
-                            <small>${doc.date}</small>
-
-                            <a href="pages/document.html?id=${doc.id}"
-                               class="btn-main">
-
-                                Read More
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-            `)
-            .join("");
-
-    },
-       /* ======================================================
-       LOAD JSON
-    ====================================================== */
-
-    async loadJSON(file) {
-
-        try {
-
-            const response = await fetch(file);
-
-            if (!response.ok) {
-
-                throw new Error(`Failed to load ${file}`);
-
-            }
-
-            return await response.json();
-
-        } catch (error) {
-
-            console.error(error);
-
-            return [];
-
-        }
-
-    },
-
-    /* ======================================================
-       LOAD DOCUMENTS
-    ====================================================== */
-
-    async loadDocuments() {
-
-        this.documents = await this.loadJSON("data/documents.json");
-
-    },
-
-    /* ======================================================
-       LIVE SEARCH
-    ====================================================== */
-
-    async search() {
-
-        if (!this.documents) {
-
-            await this.loadDocuments();
-
-        }
-
-        const keyword = this.searchInput
-            ? this.searchInput.value.trim().toLowerCase()
-            : "";
-
-        if (!keyword) {
-
-            this.results = [];
-
-            this.renderResults();
-
-            return;
-
-        }
-
-        this.results = this.documents.filter(doc => {
-
-            return (
-
-                (doc.title || "").toLowerCase().includes(keyword) ||
-
-                (doc.description || "").toLowerCase().includes(keyword)
-
-               (doc.category || "").toLowerCase().includes(keyword) ||
-
-    (doc.author || "").toLowerCase().includes(keyword) ||
-
-    String(doc.year || "").includes(keyword)
-
-);
-            );
-
-        });
-
-        this.renderResults();
-
-    },
 
 });
