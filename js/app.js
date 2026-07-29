@@ -94,6 +94,7 @@ const App = {
         this.loadFeaturedDocuments();
 
         this.loadLatestDocuments();
+           this.loadCollections();
 
     }
     /* ======================================================
