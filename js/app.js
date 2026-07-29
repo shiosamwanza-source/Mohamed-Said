@@ -87,7 +87,9 @@ const App = {
 
     loadHome() {
 
-        console.log("Mohamed Said Digital Historical Archive Started");
+    console.log("Mohamed Said Digital Historical Archive Started");
+
+    this.loadStatistics();
 
     }
     /* ======================================================
