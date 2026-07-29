@@ -218,6 +218,61 @@ const Search = {
         `).join("");
 
     },
+       /* ======================================================
+       LIVE SEARCH
+    ====================================================== */
+
+    liveSearch() {
+
+        if (!this.searchInput) return;
+
+        this.searchInput.addEventListener("input", () => {
+
+            this.search();
+
+        });
+
+    },
+
+    /* ======================================================
+       CLEAR SEARCH
+    ====================================================== */
+
+    clearSearch() {
+
+        if (!this.searchInput) return;
+
+        this.searchInput.value = "";
+
+        this.results = [];
+
+        this.renderResults();
+
+    },
+
+    /* ======================================================
+       SEARCH SUGGESTIONS
+    ====================================================== */
+
+    getSuggestions(keyword) {
+
+        if (!this.documents.length) return [];
+
+        keyword = keyword.toLowerCase();
+
+        return this.documents
+
+            .filter(doc =>
+
+                (doc.title || "")
+                    .toLowerCase()
+                    .includes(keyword)
+
+            )
+
+            .slice(0, 5);
+
+    }
 };
 
 /* ==========================================================
