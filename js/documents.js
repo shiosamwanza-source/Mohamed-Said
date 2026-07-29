@@ -172,6 +172,187 @@ const Documents = {
         }
 
     },
+       /* ======================================================
+       RELATED DOCUMENTS
+    ====================================================== */
+
+    async loadRelatedDocuments() {
+
+        if (!this.related || !this.document) return;
+
+        const documents = await this.loadJSON("data/documents.json");
+
+        const related = documents.filter(doc =>
+
+            doc.id !== this.document.id &&
+            doc.category === this.document.category
+
+        ).slice(0, 4);
+
+        if (!related.length) {
+
+            this.related.innerHTML = `
+                <p>No related documents found.</p>
+            `;
+
+            return;
+
+        }
+
+        this.related.innerHTML = related.map(doc => `
+
+            <article class="document-card">
+
+                <img src="${doc.cover}" alt="${doc.title}">
+
+                <h3>${doc.title}</h3>
+
+                <p>${doc.year}</p>
+
+                <a href="document.html?id=${doc.id}" class="btn-main">
+                    Read More
+                </a>
+
+            </article>
+
+        `).join("");
+
+    },
+
+    /* ======================================================
+       DOWNLOAD DOCUMENT
+    ====================================================== */
+
+    downloadDocument() {
+
+        if (!this.document || !this.document.pdf) return;
+
+        window.open(this.document.pdf, "_blank");
+
+    },
+
+    /* ======================================================
+       SHARE DOCUMENT
+    ====================================================== */
+
+    async shareDocument() {
+
+        if (!this.document) return;
+
+        if (navigator.share) {
+
+            try {
+
+                await navigator.share({
+
+                    title: this.document.title,
+
+                    text: this.document.description,
+
+                    url: window.location.href
+
+                });
+
+            } catch (error) {
+
+                console.error(error);
+
+            }
+
+        }
+
+    },
+
+       /* ======================================================
+       RELATED DOCUMENTS
+    ====================================================== */
+
+    async loadRelatedDocuments() {
+
+        if (!this.related || !this.document) return;
+
+        const documents = await this.loadJSON("data/documents.json");
+
+        const related = documents.filter(doc =>
+
+            doc.id !== this.document.id &&
+            doc.category === this.document.category
+
+        ).slice(0, 4);
+
+        if (!related.length) {
+
+            this.related.innerHTML = `
+                <p>No related documents found.</p>
+            `;
+
+            return;
+
+        }
+
+        this.related.innerHTML = related.map(doc => `
+
+            <article class="document-card">
+
+                <img src="${doc.cover}" alt="${doc.title}">
+
+                <h3>${doc.title}</h3>
+
+                <p>${doc.year}</p>
+
+                <a href="document.html?id=${doc.id}" class="btn-main">
+                    Read More
+                </a>
+
+            </article>
+
+        `).join("");
+
+    },
+
+    /* ======================================================
+       DOWNLOAD DOCUMENT
+    ====================================================== */
+
+    downloadDocument() {
+
+        if (!this.document || !this.document.pdf) return;
+
+        window.open(this.document.pdf, "_blank");
+
+    },
+
+    /* ======================================================
+       SHARE DOCUMENT
+    ====================================================== */
+
+    async shareDocument() {
+
+        if (!this.document) return;
+
+        if (navigator.share) {
+
+            try {
+
+                await navigator.share({
+
+                    title: this.document.title,
+
+                    text: this.document.description,
+
+                    url: window.location.href
+
+                });
+
+            } catch (error) {
+
+                console.error(error);
+
+            }
+
+        }
+
+    },
 
 };
 
