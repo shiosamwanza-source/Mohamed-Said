@@ -94,7 +94,14 @@ const App = {
         this.loadFeaturedDocuments();
 
         this.loadLatestDocuments();
-           this.loadCollections();
+        
+        this.loadCollections();
+
+        this.loadFeaturedPhotos();
+
+        this.loadFeaturedVideos();
+
+        this.loadFeaturedAudio();
 
     }
     /* ======================================================
