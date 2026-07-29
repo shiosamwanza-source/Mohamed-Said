@@ -527,3 +527,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 };
+/* ==========================================================
+   START APPLICATION
+========================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    App.init();
+
+});
