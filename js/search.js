@@ -25,8 +25,7 @@ const Search = {
        
         this.liveSearch();
 
-
- },
+},
 
     /* ======================================================
        CACHE DOM ELEMENTS
