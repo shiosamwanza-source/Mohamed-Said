@@ -229,6 +229,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 (doc.description || "").toLowerCase().includes(keyword)
 
+               (doc.category || "").toLowerCase().includes(keyword) ||
+
+    (doc.author || "").toLowerCase().includes(keyword) ||
+
+    String(doc.year || "").includes(keyword)
+
+);
             );
 
         });
