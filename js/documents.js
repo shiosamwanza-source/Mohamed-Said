@@ -111,6 +111,65 @@ const Documents = {
             return;
 
         }
+           /* ======================================================
+       RENDER DOCUMENT
+    ====================================================== */
+
+    renderDocument() {
+
+        if (!this.document) return;
+
+        if (this.title) {
+
+            this.title.textContent = this.document.title || "";
+
+            document.title = this.document.title || document.title;
+
+        }
+
+        if (this.cover) {
+
+            this.cover.src = this.document.cover || "";
+
+            this.cover.alt = this.document.title || "";
+
+        }
+
+        if (this.description) {
+
+            this.description.textContent =
+                this.document.description || "";
+
+        }
+
+        if (this.author) {
+
+            this.author.textContent =
+                this.document.author || "";
+
+        }
+
+        if (this.category) {
+
+            this.category.textContent =
+                this.document.category || "";
+
+        }
+
+        if (this.year) {
+
+            this.year.textContent =
+                this.document.year || "";
+
+        }
+
+        if (this.viewer && this.document.pdf) {
+
+            this.viewer.src = this.document.pdf;
+
+        }
+
+    },
 
     },
 
