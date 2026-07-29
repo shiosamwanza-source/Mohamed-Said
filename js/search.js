@@ -22,8 +22,11 @@ const Search = {
         this.bindEvents();
 
         this.loadDocuments();
+       
+        this.liveSearch();
 
-    },
+
+ },
 
     /* ======================================================
        CACHE DOM ELEMENTS
