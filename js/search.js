@@ -88,5 +88,84 @@ const Search = {
 document.addEventListener("DOMContentLoaded", () => {
 
     Search.init();
+       /* ======================================================
+       LOAD JSON
+    ====================================================== */
+
+    async loadJSON(file) {
+
+        try {
+
+            const response = await fetch(file);
+
+            if (!response.ok) {
+
+                throw new Error(`Failed to load ${file}`);
+
+            }
+
+            return await response.json();
+
+        } catch (error) {
+
+            console.error(error);
+
+            return [];
+
+        }
+
+    },
+
+    /* ======================================================
+       LOAD DOCUMENTS
+    ====================================================== */
+
+    async loadDocuments() {
+
+        this.documents = await this.loadJSON("data/documents.json");
+
+    },
+
+    /* ======================================================
+       LIVE SEARCH
+    ====================================================== */
+
+    async search() {
+
+        if (!this.documents) {
+
+            await this.loadDocuments();
+
+        }
+
+        const keyword = this.searchInput
+            ? this.searchInput.value.trim().toLowerCase()
+            : "";
+
+        if (!keyword) {
+
+            this.results = [];
+
+            this.renderResults();
+
+            return;
+
+        }
+
+        this.results = this.documents.filter(doc => {
+
+            return (
+
+                (doc.title || "").toLowerCase().includes(keyword) ||
+
+                (doc.description || "").toLowerCase().includes(keyword)
+
+            );
+
+        });
+
+        this.renderResults();
+
+    },
 
 });
