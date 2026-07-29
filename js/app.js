@@ -1,412 +1,346 @@
 /* ==========================================================
    MOHAMED SAID DIGITAL HISTORICAL ARCHIVE
-   RESPONSIVE STYLESHEET (PREMIUM OPTIMIZED)
+   APP.JS (PREMIUM MODERN ES6+)
 ========================================================== */
+
+"use strict";
+
+const App = {
+    data: {
+        documents: [],
+        photos: [],
+        videos: [],
+        audio: []
+    },
+
+    /* ======================================================
+       INITIALIZE APPLICATION
+    ====================================================== */
+    init() {
+        this.cacheDOM();
+        this.bindEvents();
+        this.initUI();
+        this.loadHome();
+    },
+
+    /* ======================================================
+       CACHE DOM ELEMENTS
+    ====================================================== */
+    cacheDOM() {
+        this.preloader = document.getElementById("preloader");
+        this.header = document.getElementById("header");
+        this.menuToggle = document.getElementById("menuToggle");
+        this.navbar = document.getElementById("navbar");
+        this.backToTop = document.getElementById("backToTop");
+
+        this.statistics = document.querySelector("#statistics");
+        this.featuredDocuments = document.querySelector("#featuredDocuments");
+        this.latestDocuments = document.querySelector("#latestDocuments");
+        this.featuredPhotos = document.querySelector("#featuredPhotos") || document.querySelector("#photo-gallery");
+        this.featuredVideos = document.querySelector("#featuredVideos");
+        this.featuredAudio = document.querySelector("#featuredAudio");
+    },
+
+    /* ======================================================
+       BIND EVENTS
+    ====================================================== */
+    bindEvents() {
+        window.addEventListener("load", () => this.hideLoader());
+        window.addEventListener("scroll", () => this.handleScroll());
+
+        if (this.menuToggle) {
+            this.menuToggle.addEventListener("click", () => {
+                this.navbar.classList.toggle("active");
+            });
+        }
+
+        // Close menu when a link is clicked
+        document.querySelectorAll("#navbar a").forEach(link => {
+            link.addEventListener("click", () => {
+                this.navbar.classList.remove("active");
+            });
+        });
+
+        if (this.backToTop) {
+            this.backToTop.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        }
+    },
+
+    /* ======================================================
+       UI INTERACTIONS (Preloader, Scroll Effects, Reveal)
+    ====================================================== */
+    initUI() {
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll(".reveal");
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Counter Animation
+        const counters = document.querySelectorAll("[data-count]");
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+    },
+
+    handleScroll() {
+        // Header Shadow on Scroll
+        if (window.scrollY > 50) {
+            this.header.classList.add("scrolled");
+        } else {
+            this.header.classList.remove("scrolled");
+        }
+
+        // Back to top button
+        if (window.scrollY > 300) {
+            this.backToTop.style.display = "block";
+        } else {
+            this.backToTop.style.display = "none";
+        }
+    },
+
+    animateCounter(element) {
+        const target = +element.getAttribute("data-count");
+        let current = 0;
+        const increment = target / 100; // Adjust speed here
+
+        const updateCount = () => {
+            current += increment;
+            if (current < target) {
+                element.innerText = Math.ceil(current);
+                requestAnimationFrame(updateCount);
+            } else {
+                element.innerText = target;
+            }
+        };
+        updateCount();
+    },
+
+    hideLoader() {
+        if (!this.preloader) return;
+        this.preloader.classList.add("hidden");
+        setTimeout(() => {
+            this.preloader.style.display = "none";
+        }, 600);
+    },
+
+    /* ======================================================
+       LOAD HOME (Fetch all data at once for performance)
+    ====================================================== */
+    async loadHome() {
+        console.log("Mohamed Said Digital Historical Archive Started");
+        
+        try {
+            const [documents, photos, videos, audio] = await Promise.all([
+                this.loadJSON("data/documents.json"),
+                this.loadJSON("data/photos.json"),
+                this.loadJSON("data/videos.json"),
+                this.loadJSON("data/audio.json")
+            ]);
+
+            this.data.documents = documents;
+            this.data.photos = photos;
+            this.data.videos = videos;
+            this.data.audio = audio;
+
+            // Render Data to UI
+            this.renderStatistics();
+            this.renderFeaturedDocuments();
+            this.renderLatestDocuments();
+            this.renderFeaturedPhotos();
+            this.renderFeaturedVideos();
+            this.renderFeaturedAudio();
+
+        } catch (error) {
+            console.error("Failed to initialize archive data:", error);
+        }
+    },
+
+    /* ======================================================
+       LOAD JSON HELPER
+    ====================================================== */
+    async loadJSON(file) {
+        try {
+            const response = await fetch(file);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status} for ${file}`);
+            return await response.json();
+        } catch (error) {
+            console.error(`Failed to load ${file}:`, error);
+            return []; // Return empty array to prevent app crash
+        }
+    },
+
+    /* ======================================================
+       RENDER METHODS
+    ====================================================== */
+    renderStatistics() {
+        const docsCount = this.data.documents.length;
+        const photosCount = this.data.photos.length;
+        const videosCount = this.data.videos.length;
+        const audioCount = this.data.audio.length;
+
+        const setText = (id, val) => {
+            const el = document.querySelector(id);
+            if (el) el.textContent = val;
+        };
+
+        setText("#documentsCount", docsCount);
+        setText("#photosCount", photosCount);
+        setText("#videosCount", videosCount);
+        setText("#audioCount", audioCount);
+    },
+
+    renderFeaturedDocuments() {
+        if (!this.featuredDocuments) return;
+        const featured = this.data.documents.filter(doc => doc.featured === true).slice(0, 6);
+
+        if (!featured.length) {
+            this.featuredDocuments.innerHTML = `<p class="empty-state">No featured documents found.</p>`;
+            return;
+        }
+
+        this.featuredDocuments.innerHTML = featured.map(doc => `
+            <article class="document-card">
+                <div class="document-image">
+                    <img src="${doc.cover || 'assets/images/default.jpg'}" alt="${doc.title}">
+                    ${doc.featured ? '<span class="card-ribbon">Featured</span>' : ''}
+                </div>
+                <div class="document-content">
+                    <span class="status-badge badge-featured">${doc.category || 'Document'}</span>
+                    <h3 class="document-title">${doc.title}</h3>
+                    <p class="document-description">${doc.description || ''}</p>
+                    <a href="pages/document.html?id=${doc.id}" class="btn btn-primary card-btn">
+                        <i class="fas fa-book-open"></i> Read More
+                    </a>
+                </div>
+            </article>
+        `).join("");
+    },
+
+    renderLatestDocuments() {
+        if (!this.latestDocuments) return;
+        const latest = [...this.data.documents]
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .slice(0, 8);
+
+        if (!latest.length) {
+            this.latestDocuments.innerHTML = `<p class="empty-state">No documents available.</p>`;
+            return;
+        }
+
+        this.latestDocuments.innerHTML = latest.map(doc => `
+            <article class="document-card">
+                <div class="document-image">
+                    <img src="${doc.cover || 'assets/images/default.jpg'}" alt="${doc.title}">
+                </div>
+                <div class="document-content">
+                    <span class="status-badge badge-new">${doc.category || 'Document'}</span>
+                    <h3 class="document-title">${doc.title}</h3>
+                    <p class="document-description">${doc.description || ''}</p>
+                    <a href="pages/document.html?id=${doc.id}" class="btn btn-outline card-btn">
+                        <i class="fas fa-eye"></i> View Document
+                    </a>
+                </div>
+            </article>
+        `).join("");
+    },
+
+    renderFeaturedPhotos() {
+        if (!this.featuredPhotos) return;
+        if (!this.data.photos.length) {
+            this.featuredPhotos.innerHTML = `<p class="empty-state">No photos available.</p>`;
+            return;
+        }
+
+        this.featuredPhotos.innerHTML = this.data.photos.slice(0, 8).map(photo => `
+            <div class="photo-card">
+                <img src="${photo.image || 'assets/images/default.jpg'}" alt="${photo.title}">
+                <div class="photo-overlay">
+                    <h3>${photo.title}</h3>
+                    <p>${photo.description || ''}</p>
+                    <span class="status-badge badge-featured">${photo.category || 'Photo'}</span>
+                </div>
+            </div>
+        `).join("");
+    },
+
+    renderFeaturedVideos() {
+        if (!this.featuredVideos) return;
+        if (!this.data.videos.length) {
+            this.featuredVideos.innerHTML = `<p class="empty-state">No videos available.</p>`;
+            return;
+        }
+
+        this.featuredVideos.innerHTML = this.data.videos.slice(0, 6).map(video => `
+            <div class="video-card">
+                <img src="${video.thumbnail || 'assets/images/default.jpg'}" alt="${video.title}">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+                <div class="video-info">
+                    <h3>${video.title}</h3>
+                    <a href="${video.url}" target="_blank" class="btn btn-primary card-btn">
+                        <i class="fab fa-youtube"></i> Watch Now
+                    </a>
+                </div>
+            </div>
+        `).join("");
+    },
+
+    renderFeaturedAudio() {
+        if (!this.featuredAudio) return;
+        if (!this.data.audio.length) {
+            this.featuredAudio.innerHTML = `<p class="empty-state">No audio available.</p>`;
+            return;
+        }
+
+        this.featuredAudio.innerHTML = this.data.audio.slice(0, 6).map(item => `
+            <div class="audio-card">
+                <div class="audio-icon">
+                    <i class="fas fa-headphones"></i>
+                </div>
+                <div class="audio-content">
+                    <h3>${item.title}</h3>
+                    <audio controls style="width: 100%; margin-top: 10px; outline: none;">
+                        <source src="${item.file}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        `).join("");
+    },
+
+    /* ======================================================
+       APPLICATION INFORMATION
+    ====================================================== */
+    version() {
+        return {
+            name: "Mohamed Said Digital Historical Archive",
+            version: "1.0.0",
+            platform: "GitHub Pages",
+            author: "Mohamed Said Digital Archive"
+        };
+    }
+};
 
 /* ==========================================================
-   EXTRA LARGE DESKTOPS (1440px and up)
+   START APPLICATION
 ========================================================== */
-@media (min-width: 1440px) {
-  .container {
-    max-width: 1400px;
-  }
-
-  .hero h1 {
-    font-size: 5.2rem;
-  }
-
-  section {
-    padding: 110px 0;
-  }
-}
-
-/* ==========================================================
-   LARGE TABLETS & SMALL LAPTOPS (1200px)
-========================================================== */
-@media (max-width: 1200px) {
-  .container {
-    width: 94%;
-  }
-
-  .hero-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 50px;
-  }
-
-  .hero-content {
-    max-width: 800px;
-    margin: auto;
-  }
-
-  .hero-search {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-image {
-    order: -1; /* Picha iondoke juu, maandishi chini */
-  }
-
-  .hero-image img {
-    max-width: 420px;
-    margin: auto;
-  }
-
-  .hero-buttons,
-  .hero-stats {
-    justify-content: center;
-  }
-
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 35px;
-  }
-}
-
-/* ==========================================================
-   TABLETS (992px)
-========================================================== */
-@media (max-width: 992px) {
-  /* Mobile Navigation Activation */
-  #menuToggle {
-    display: flex;
-  }
-
-  #navbar {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 300px;
-    height: 100vh;
-    background: var(--background-2);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 100px 25px 35px;
-    transition: var(--transition);
-    border-left: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    z-index: 999;
-    overflow-y: auto;
-  }
-
-  #navbar.active {
-    right: 0;
-  }
-
-  #navbar ul {
-    flex-direction: column;
-    width: 100%;
-    gap: 0;
-  }
-
-  #navbar ul li {
-    width: 100%;
-  }
-
-  #navbar ul li a {
-    display: block;
-    width: 100%;
-    padding: 18px 0;
-    font-size: 1.1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  .section {
-    padding: 70px 0;
-  }
-
-  .section-header h2 {
-    font-size: 2.1rem;
-  }
-
-  /* Timeline Adjustment for Tablets */
-  .timeline-wrapper::before {
-    left: 20px;
-  }
-
-  .timeline-item {
-    width: 100%;
-    left: 0 !important;
-    text-align: left !important;
-    padding-left: 55px;
-    padding-right: 15px;
-  }
-
-  .collection-grid,
-  .document-grid,
-  .gallery-grid,
-  .video-grid,
-  .audio-grid,
-  .figure-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .newsletter-box {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .newsletter-form {
-    justify-content: center;
-    width: 100%;
-  }
-}
-
-/* ==========================================================
-   MOBILE DEVICES (768px)
-========================================================== */
-@media (max-width: 768px) {
-  .hero {
-    padding: 120px 0 60px;
-    min-height: auto;
-  }
-
-  .hero h1 {
-    font-size: 2.3rem;
-  }
-
-  .hero h1 span {
-    font-size: 1.8rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-  }
-
-  .hero-buttons a,
-  .hero-buttons .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .hero-stats {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .collection-grid,
-  .document-grid,
-  .gallery-grid,
-  .video-grid,
-  .audio-grid,
-  .figure-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .footer-about p {
-    margin: 0 auto;
-  }
-
-  .social-icons {
-    justify-content: center;
-  }
-
-  .newsletter-box {
-    padding: 30px;
-  }
-
-  .newsletter-form {
-    flex-direction: column;
-  }
-
-  .newsletter-form input {
-    min-width: 100%;
-  }
-
-  /* Search Bar Mobile Adjustments */
-  .search-wrapper {
-    flex-direction: column;
-    border-radius: 18px;
-    padding: 5px;
-  }
-
-  .search-wrapper i {
-    display: none;
-  }
-
-  .search-wrapper input {
-    width: 100%;
-    padding: 16px;
-    margin-bottom: 10px;
-  }
-
-  .search-wrapper button {
-    width: 100%;
-    border-radius: 12px;
-    padding: 14px;
-  }
-
-  .hero-image img {
-    max-width: 320px;
-  }
-}
-
-/* ==========================================================
-   SMALL MOBILE DEVICES (576px)
-========================================================== */
-@media (max-width: 576px) {
-  .container {
-    width: 95%;
-  }
-
-  .logo img {
-    width: 45px;
-    height: 45px;
-  }
-
-  .logo h2 {
-    font-size: 1rem;
-  }
-
-  .logo span {
-    font-size: 0.7rem;
-    letter-spacing: 1px;
-  }
-
-  .section {
-    padding: 55px 0;
-  }
-
-  .section-header h2 {
-    font-size: 1.8rem;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-  }
-
-  .hero-tag {
-    font-size: 0.8rem;
-  }
-
-  /* Adjust Card Image Heights for Small Screens */
-  .document-image {
-    height: 220px;
-  }
-
-  .photo-card img {
-    height: 240px;
-  }
-
-  .video-card img {
-    height: 200px;
-  }
-
-  .figure-card img {
-    height: 260px;
-  }
-
-  .footer {
-    padding: 50px 0 20px;
-  }
-
-  .footer-bottom {
-    font-size: 0.85rem;
-  }
-
-  /* Adjust Floating Buttons for Small Screens */
-  .whatsapp-float {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-    bottom: 20px;
-    right: 20px;
-  }
-
-  #backToTop {
-    bottom: 80px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-  }
-}
-
-/* ==========================================================
-   LANDSCAPE PHONES (Height less than 600px)
-========================================================== */
-@media (max-height: 600px) and (orientation: landscape) {
-  .hero {
-    min-height: auto;
-    padding: 100px 0 50px;
-  }
-
-  .hero-grid {
-    gap: 30px;
-  }
-
-  .hero-image img {
-    max-width: 250px;
-  }
-  
-  .hero h1 {
-    font-size: 2rem;
-  }
-}
-
-/* ==========================================================
-   ACCESSIBILITY (Reduced Motion)
-========================================================== */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* ==========================================================
-   PRINT STYLES (Kwa ajili ya kuchapa nyaraka)
-========================================================== */
-@media print {
-  #header,
-  .footer,
-  .hero-buttons,
-  .newsletter,
-  #backToTop,
-  .whatsapp-float,
-  #menuToggle {
-    display: none !important;
-  }
-
-  body {
-    background: #fff !important;
-    color: #000 !important;
-  }
-
-  .hero {
-    background: none !important;
-    padding: 20px 0 !important;
-    min-height: auto !important;
-  }
-
-  .hero h1,
-  .hero p,
-  h1, h2, h3, h4 {
-    color: #000 !important;
-  }
-
-  section {
-    padding: 20px 0 !important;
-  }
-
-  a {
-    color: #000 !important;
-    text-decoration: underline;
-  }
-}
+document.addEventListener("DOMContentLoaded", () => {
+    App.init();
+});
