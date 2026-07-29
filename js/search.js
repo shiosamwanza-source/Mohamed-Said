@@ -112,6 +112,112 @@ const Search = {
         this.documents = await this.loadJSON("data/documents.json");
 
     },
+       /* ======================================================
+       SEARCH DOCUMENTS
+    ====================================================== */
+
+    async search() {
+
+        if (!this.documents.length) {
+
+            await this.loadDocuments();
+
+        }
+
+        const keyword = this.searchInput
+            ? this.searchInput.value.trim().toLowerCase()
+            : "";
+
+        if (!keyword) {
+
+            this.results = [];
+
+            this.renderResults();
+
+            return;
+
+        }
+
+        this.results = this.documents.filter(doc => {
+
+            return (
+
+                (doc.title || "").toLowerCase().includes(keyword) ||
+
+                (doc.description || "").toLowerCase().includes(keyword) ||
+
+                (doc.category || "").toLowerCase().includes(keyword) ||
+
+                (doc.author || "").toLowerCase().includes(keyword) ||
+
+                String(doc.year || "").includes(keyword)
+
+            );
+
+        });
+
+        this.renderResults();
+
+    },
+
+    /* ======================================================
+       RENDER RESULTS
+    ====================================================== */
+
+    renderResults() {
+
+        if (!this.resultsContainer) return;
+
+        if (!this.results.length) {
+
+            this.resultsContainer.innerHTML = `
+
+                <div class="empty-state">
+
+                    <h3>No Results Found</h3>
+
+                    <p>Try another keyword.</p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+        this.resultsContainer.innerHTML = this.results.map(doc => `
+
+            <article class="document-card">
+
+                <div class="document-image">
+
+                    <img src="${doc.cover}" alt="${doc.title}">
+
+                </div>
+
+                <div class="document-content">
+
+                    <span class="badge">${doc.category}</span>
+
+                    <h3>${doc.title}</h3>
+
+                    <p>${doc.description}</p>
+
+                    <a href="pages/document.html?id=${doc.id}"
+                       class="btn-main">
+
+                        Read More
+
+                    </a>
+
+                </div>
+
+            </article>
+
+        `).join("");
+
+    }
 };
 
 /* ==========================================================
