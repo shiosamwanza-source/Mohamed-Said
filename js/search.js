@@ -21,6 +21,9 @@ const Search = {
 
         this.bindEvents();
 
+       this.loadDocuments();
+
+
     },
 
     /* ======================================================
