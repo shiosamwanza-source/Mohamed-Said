@@ -356,6 +356,76 @@ const Documents = {
 
     },
 
+       /* ======================================================
+       REFRESH DOCUMENT
+    ====================================================== */
+
+    async refresh() {
+
+        this.document = null;
+
+        await this.loadDocument();
+
+    },
+
+    /* ======================================================
+       PREVIOUS DOCUMENT
+    ====================================================== */
+
+    async previousDocument() {
+
+        const documents = await this.loadJSON("data/documents.json");
+
+        const index = documents.findIndex(doc =>
+            String(doc.id) === String(this.document.id)
+        );
+
+        if (index > 0) {
+
+            window.location.href =
+                `document.html?id=${documents[index - 1].id}`;
+
+        }
+
+    },
+
+    /* ======================================================
+       NEXT DOCUMENT
+    ====================================================== */
+
+    async nextDocument() {
+
+        const documents = await this.loadJSON("data/documents.json");
+
+        const index = documents.findIndex(doc =>
+            String(doc.id) === String(this.document.id)
+        );
+
+        if (index < documents.length - 1) {
+
+            window.location.href =
+                `document.html?id=${documents[index + 1].id}`;
+
+        }
+
+    },
+
+    /* ======================================================
+       MODULE INFO
+    ====================================================== */
+
+    version() {
+
+        return {
+
+            name: "Mohamed Said Digital Historical Archive Documents",
+
+            version: "1.0.0"
+
+        };
+
+    }
+
 };
 
 /* ==========================================================
