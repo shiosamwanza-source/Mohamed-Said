@@ -109,6 +109,7 @@ const Documents = {
             console.error("Document not found.");
 
             return;
+           
            this.renderDocument();
 
         }
