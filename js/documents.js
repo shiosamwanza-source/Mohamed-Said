@@ -58,6 +58,61 @@ const Documents = {
         return params.get("id");
 
     }
+       /* ======================================================
+       LOAD JSON
+    ====================================================== */
+
+    async loadJSON(file) {
+
+        try {
+
+            const response = await fetch(file);
+
+            if (!response.ok) {
+
+                throw new Error(`Failed to load ${file}`);
+
+            }
+
+            return await response.json();
+
+        } catch (error) {
+
+            console.error(error);
+
+            return [];
+
+        }
+
+    },
+
+    /* ======================================================
+       LOAD DOCUMENT
+    ====================================================== */
+
+    async loadDocument() {
+
+        const id = this.getDocumentId();
+
+        if (!id) return;
+
+        const documents = await this.loadJSON("data/documents.json");
+
+        this.document = documents.find(doc =>
+
+            String(doc.id) === String(id)
+
+        );
+
+        if (!this.document) {
+
+            console.error("Document not found.");
+
+            return;
+
+        }
+
+    },
 
 };
 
