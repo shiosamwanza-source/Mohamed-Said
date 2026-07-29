@@ -85,11 +85,15 @@ const App = {
        LOAD HOME
     ====================================================== */
 
-    loadHome() {
+        loadHome() {
 
-    console.log("Mohamed Said Digital Historical Archive Started");
+        console.log("Mohamed Said Digital Historical Archive Started");
 
-    this.loadStatistics();
+        this.loadStatistics();
+
+        this.loadFeaturedDocuments();
+
+        this.loadLatestDocuments();
 
     }
     /* ======================================================
