@@ -92,6 +92,72 @@ document.addEventListener("DOMContentLoaded", () => {
 
     Search.init();
        /* ======================================================
+       RENDER SEARCH RESULTS
+    ====================================================== */
+
+    renderResults() {
+
+        if (!this.resultsContainer) return;
+
+        if (!this.results || this.results.length === 0) {
+
+            this.resultsContainer.innerHTML = `
+
+                <div class="empty-state">
+
+                    <h3>No Results Found</h3>
+
+                    <p>Try using different keywords.</p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+        this.resultsContainer.innerHTML = this.results
+            .map(doc => `
+
+                <article class="document-card">
+
+                    <div class="document-image">
+
+                        <img src="${doc.cover}" alt="${doc.title}">
+
+                    </div>
+
+                    <div class="document-content">
+
+                        <span class="badge">${doc.category}</span>
+
+                        <h3>${doc.title}</h3>
+
+                        <p>${doc.description}</p>
+
+                        <div class="card-footer">
+
+                            <small>${doc.date}</small>
+
+                            <a href="pages/document.html?id=${doc.id}"
+                               class="btn-main">
+
+                                Read More
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            `)
+            .join("");
+
+    },
+       /* ======================================================
        LOAD JSON
     ====================================================== */
 
