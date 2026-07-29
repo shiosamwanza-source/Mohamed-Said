@@ -75,6 +75,43 @@ const Search = {
 
     }
 
+       /* ======================================================
+       LOAD JSON
+    ====================================================== */
+
+    async loadJSON(file) {
+
+        try {
+
+            const response = await fetch(file);
+
+            if (!response.ok) {
+
+                throw new Error(`Failed to load ${file}`);
+
+            }
+
+            return await response.json();
+
+        } catch (error) {
+
+            console.error(error);
+
+            return [];
+
+        }
+
+    },
+
+    /* ======================================================
+       LOAD DOCUMENTS
+    ====================================================== */
+
+    async loadDocuments() {
+
+        this.documents = await this.loadJSON("data/documents.json");
+
+    },
 };
 
 /* ==========================================================
