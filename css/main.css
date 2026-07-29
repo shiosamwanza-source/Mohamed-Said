@@ -172,3 +172,124 @@ p{
     color:#111;
 
 }
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    background:rgba(8,17,29,.92);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+}
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    height:80px;
+}
+
+.logo{
+    font-size:1.6rem;
+    font-weight:800;
+    color:var(--primary);
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
+
+.nav-links a{
+    color:var(--white);
+    font-weight:500;
+    transition:var(--transition);
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+    color:var(--primary);
+}
+
+.menu-btn{
+    display:none;
+    font-size:1.8rem;
+    cursor:pointer;
+    color:var(--white);
+}
+
+/* ==========================================================
+   HERO SECTION
+========================================================== */
+
+.hero{
+    padding:170px 0 120px;
+    background:linear-gradient(180deg,#08111d,#0d1b2b);
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    align-items:center;
+    gap:60px;
+}
+
+.hero-subtitle{
+    color:var(--primary);
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    margin-bottom:18px;
+}
+
+.hero-title{
+    font-size:4rem;
+    margin-bottom:25px;
+}
+
+.hero-text{
+    font-size:1.1rem;
+    margin-bottom:35px;
+    max-width:650px;
+}
+
+.hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.hero-image{
+    display:flex;
+    justify-content:center;
+}
+
+.hero-image img{
+    width:100%;
+    max-width:520px;
+    border-radius:24px;
+    box-shadow:var(--shadow);
+}
+
+/* ==========================================================
+   SECTION TITLES
+========================================================== */
+
+.section-title{
+    text-align:center;
+    margin-bottom:20px;
+    color:var(--white);
+}
+
+.section-subtitle{
+    text-align:center;
+    color:var(--muted);
+    max-width:760px;
+    margin:0 auto 60px;
+}
