@@ -275,6 +275,39 @@ const Search = {
             .slice(0, 5);
 
     },
+       /* ======================================================
+       REFRESH SEARCH
+    ====================================================== */
+
+    async refresh() {
+
+        await this.loadDocuments();
+
+        this.results = [];
+
+        if (this.resultsContainer) {
+
+            this.resultsContainer.innerHTML = "";
+
+        }
+
+    },
+
+    /* ======================================================
+       APPLICATION INFO
+    ====================================================== */
+
+    version() {
+
+        return {
+
+            name: "Mohamed Said Digital Historical Archive Search",
+
+            version: "1.0.0"
+
+        };
+
+    }
 };
 
 /* ==========================================================
