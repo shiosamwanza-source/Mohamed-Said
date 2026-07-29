@@ -424,6 +424,12 @@ const Documents = {
 
 };
 
+document.addEventListener("DOMContentLoaded", () => {
+
+    Documents.init();
+
+});
+
 /* ==========================================================
    START DOCUMENTS
 ========================================================== */
