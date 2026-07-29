@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ==========================================================
    MOHAMED SAID DIGITAL HISTORICAL ARCHIVE
    APP.JS
@@ -536,3 +537,35 @@ document.addEventListener("DOMContentLoaded", () => {
     App.init();
 
 });
+=======
+async function loadPhotos() {
+    try {
+        const response = await fetch('data/photos.json');
+        const photos = await response.json();
+
+        const gallery = document.getElementById('photo-gallery');
+
+        if (!gallery) return;
+
+        gallery.innerHTML = "";
+
+        photos.forEach(photo => {
+            gallery.innerHTML += `
+                <div class="photo-card">
+                    <img src="${photo.image}" alt="${photo.title}">
+                    <div class="photo-content">
+                        <h3>${photo.title}</h3>
+                        <p>${photo.description}</p>
+                        <span>${photo.category}</span>
+                    </div>
+                </div>
+            `;
+        });
+
+    } catch (error) {
+        console.error("Error loading photos:", error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadPhotos);
+>>>>>>> 316a3599 (Update homepage)

@@ -1,0 +1,79 @@
+[
+  {
+    "id": 1,
+    "title": "George Arnautoglu",
+    "category": "Wafadhili wa TANU",
+    "image": "assets/images/george-arnautoglu.jpg",
+    "description": "Mfanyabiashara na mfadhili wa harakati za uhuru wa Tanganyika."
+  },
+  {
+    "id": 2,
+    "title": "Victor Mkello",
+    "category": "Harakati za Uhuru",
+    "image": "assets/images/victor-mkello.jpg",
+    "description": "Rais wa Shirikisho la Wafanyakazi wa Tanganyika."
+  },
+  {
+    "id": 3,
+    "title": "Mohamed Omar Mkwawa",
+    "category": "Harakati za Uhuru",
+    "image": "assets/images/mohamed-omar-mkwawa.jpg",
+    "description": "Mshiriki wa matukio ya Mapinduzi ya Zanzibar na harakati za kisiasa."
+  },
+  {
+    "id": 4,
+    "title": "Dome Okochi Budohi",
+    "category": "Mashujaa Waliosahaulika",
+    "image": "assets/images/dome-budohi.jpg",
+    "description": "Mkenya aliyeshiriki katika harakati za uhuru wa Tanganyika."
+  },
+  {
+    "id": 5,
+    "title": "Abdilatif Abdalla",
+    "category": "Waandishi",
+    "image": "assets/images/abdilatif-abdalla.jpg",
+    "description": "Mwandishi na mshairi mashuhuri wa Kenya."
+  },
+  {
+    "id": 6,
+    "title": "Amir Jamal",
+    "category": "Viongozi",
+    "image": "assets/images/amir-jamal.jpg",
+    "description": "Kiongozi wa TANU na Waziri wa Fedha wa Tanzania."
+  },
+  {
+    "id": 7,
+    "title": "Rashid Makoko",
+    "category": "Harakati za Uhuru",
+    "image": "assets/images/rashid-makoko.jpg",
+    "description": "Mshiriki wa harakati za TANU mjini Tanga."
+  },
+  {
+    "id": 8,
+    "title": "Sadiki Patwa",
+    "category": "Harakati za Uhuru",
+    "image": "assets/images/sadiki-patwa.jpg",
+    "description": "Mfadhili na mshiriki wa harakati za uhuru."
+  },
+  {
+    "id": 9,
+    "title": "Mohamed Said akiwa na Abdilatif Abdalla",
+    "category": "Mohamed Said Collection",
+    "image": "assets/images/mohamed-abdilatif-abdalla.jpg",
+    "description": "Mkutano kati ya Mohamed Said na Abdilatif Abdalla."
+  },
+  {
+    "id": 10,
+    "title": "Sal Davis",
+    "category": "Sanaa",
+    "image": "assets/images/sal-davis.jpg",
+    "description": "Mwanamuziki mashuhuri wa Kenya."
+  },
+  {
+    "id": 11,
+    "title": "Wasomaji wa Zanzibar",
+    "category": "Vitabu",
+    "image": "assets/images/zanzibar-readers.jpg",
+    "description": "Wasomaji wakionesha kitabu cha Abdulwahid Sykes."
+  }
+]
