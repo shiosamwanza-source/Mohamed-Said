@@ -252,6 +252,7 @@ const App = {
         }
 
         this.latestDocuments.innerHTML = latest.map(doc => `
+        this.documentCard(doc))
 
             <article class="document-card">
 
