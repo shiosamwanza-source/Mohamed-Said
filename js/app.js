@@ -296,3 +296,132 @@ document.addEventListener("DOMContentLoaded", () => {
     App.init();
 
 });
+    /* ======================================================
+       LOAD FEATURED PHOTOS
+    ====================================================== */
+
+    async loadFeaturedPhotos() {
+
+        if (!this.featuredPhotos) return;
+
+        const photos = await this.loadJSON("data/photos.json");
+
+        if (!photos.length) {
+
+            this.featuredPhotos.innerHTML =
+                `<p class="empty-state">No photos available.</p>`;
+
+            return;
+
+        }
+
+        this.featuredPhotos.innerHTML = photos
+            .slice(0, 8)
+            .map(photo => `
+
+                <div class="photo-card">
+
+                    <img src="${photo.image}" alt="${photo.title}">
+
+                    <div class="photo-info">
+
+                        <h4>${photo.title}</h4>
+
+                    </div>
+
+                </div>
+
+            `)
+            .join("");
+
+    },
+
+    /* ======================================================
+       LOAD FEATURED VIDEOS
+    ====================================================== */
+
+    async loadFeaturedVideos() {
+
+        if (!this.featuredVideos) return;
+
+        const videos = await this.loadJSON("data/videos.json");
+
+        if (!videos.length) {
+
+            this.featuredVideos.innerHTML =
+                `<p class="empty-state">No videos available.</p>`;
+
+            return;
+
+        }
+
+        this.featuredVideos.innerHTML = videos
+            .slice(0, 6)
+            .map(video => `
+
+                <div class="video-card">
+
+                    <img src="${video.thumbnail}" alt="${video.title}">
+
+                    <div class="video-info">
+
+                        <h4>${video.title}</h4>
+
+                        <a href="${video.url}"
+                           target="_blank"
+                           class="btn-main">
+
+                            Watch
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            `)
+            .join("");
+
+    },
+
+    /* ======================================================
+       LOAD FEATURED AUDIO
+    ====================================================== */
+
+    async loadFeaturedAudio() {
+
+        if (!this.featuredAudio) return;
+
+        const audio = await this.loadJSON("data/audio.json");
+
+        if (!audio.length) {
+
+            this.featuredAudio.innerHTML =
+                `<p class="empty-state">No audio available.</p>`;
+
+            return;
+
+        }
+
+        this.featuredAudio.innerHTML = audio
+            .slice(0, 6)
+            .map(item => `
+
+                <div class="audio-card">
+
+                    <h4>${item.title}</h4>
+
+                    <audio controls>
+
+                        <source src="${item.file}" type="audio/mpeg">
+
+                        Your browser does not support audio.
+
+                    </audio>
+
+                </div>
+
+            `)
+            .join("");
+
+    },
