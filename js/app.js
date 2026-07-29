@@ -167,6 +167,117 @@ const App = {
         }
 
     },
+       /* ======================================================
+       LOAD FEATURED DOCUMENTS
+    ====================================================== */
+
+    async loadFeaturedDocuments() {
+
+        if (!this.featuredDocuments) return;
+
+        const documents = await this.loadJSON("data/documents.json");
+
+        const featured = documents
+            .filter(doc => doc.featured === true)
+            .slice(0, 6);
+
+        if (!featured.length) {
+
+            this.featuredDocuments.innerHTML =
+                `<p class="empty-state">No featured documents found.</p>`;
+
+            return;
+
+        }
+
+        this.featuredDocuments.innerHTML = featured.map(doc => `
+
+            <article class="document-card">
+
+                <div class="document-image">
+
+                    <img src="${doc.cover}" alt="${doc.title}">
+
+                </div>
+
+                <div class="document-content">
+
+                    <span class="badge">${doc.category}</span>
+
+                    <h3>${doc.title}</h3>
+
+                    <p>${doc.description}</p>
+
+                    <a href="pages/document.html?id=${doc.id}"
+                       class="btn-main">
+
+                        Read More
+
+                    </a>
+
+                </div>
+
+            </article>
+
+        `).join("");
+
+    },
+
+    /* ======================================================
+       LOAD LATEST DOCUMENTS
+    ====================================================== */
+
+    async loadLatestDocuments() {
+
+        if (!this.latestDocuments) return;
+
+        const documents = await this.loadJSON("data/documents.json");
+
+        const latest = [...documents]
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .slice(0, 8);
+
+        if (!latest.length) {
+
+            this.latestDocuments.innerHTML =
+                `<p class="empty-state">No documents available.</p>`;
+
+            return;
+
+        }
+
+        this.latestDocuments.innerHTML = latest.map(doc => `
+
+            <article class="document-card">
+
+                <div class="document-image">
+
+                    <img src="${doc.cover}" alt="${doc.title}">
+
+                </div>
+
+                <div class="document-content">
+
+                    <span class="badge">${doc.category}</span>
+
+                    <h3>${doc.title}</h3>
+
+                    <p>${doc.description}</p>
+
+                    <a href="pages/document.html?id=${doc.id}"
+                       class="btn-main">
+
+                        Read More
+
+                    </a>
+
+                </div>
+
+            </article>
+
+        `).join("");
+
+    },
 };
 
 /* ==========================================================
