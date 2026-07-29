@@ -112,6 +112,8 @@ const Documents = {
            
            this.renderDocument();
 
+           this.loadRelatedDocuments();
+
         }
            /* ======================================================
        RENDER DOCUMENT
