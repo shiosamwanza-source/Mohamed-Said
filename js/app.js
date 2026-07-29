@@ -90,7 +90,81 @@ const App = {
         console.log("Mohamed Said Digital Historical Archive Started");
 
     }
+    /* ======================================================
+       LOAD JSON FILE
+    ====================================================== */
 
+    async loadJSON(file) {
+
+        try {
+
+            const response = await fetch(file);
+
+            if (!response.ok) {
+
+                throw new Error(`Failed to load ${file}`);
+
+            }
+
+            return await response.json();
+
+        } catch (error) {
+
+            console.error(error);
+
+            return [];
+
+        }
+
+    },
+
+    /* ======================================================
+       LOAD STATISTICS
+    ====================================================== */
+
+    async loadStatistics() {
+
+        const documents = await this.loadJSON("data/documents.json");
+
+        const photos = await this.loadJSON("data/photos.json");
+
+        const videos = await this.loadJSON("data/videos.json");
+
+        const audio = await this.loadJSON("data/audio.json");
+
+        const documentsCount = document.querySelector("#documentsCount");
+
+        const photosCount = document.querySelector("#photosCount");
+
+        const videosCount = document.querySelector("#videosCount");
+
+        const audioCount = document.querySelector("#audioCount");
+
+        if (documentsCount) {
+
+            documentsCount.textContent = documents.length;
+
+        }
+
+        if (photosCount) {
+
+            photosCount.textContent = photos.length;
+
+        }
+
+        if (videosCount) {
+
+            videosCount.textContent = videos.length;
+
+        }
+
+        if (audioCount) {
+
+            audioCount.textContent = audio.length;
+
+        }
+
+    },
 };
 
 /* ==========================================================
