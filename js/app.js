@@ -480,3 +480,50 @@ document.addEventListener("DOMContentLoaded", () => {
             .join("");
 
     },
+    /* ======================================================
+       REFRESH APPLICATION
+    ====================================================== */
+
+    async refresh() {
+
+        await Promise.all([
+
+            this.loadStatistics(),
+
+            this.loadFeaturedDocuments(),
+
+            this.loadLatestDocuments(),
+
+            this.loadCollections(),
+
+            this.loadFeaturedPhotos(),
+
+            this.loadFeaturedVideos(),
+
+            this.loadFeaturedAudio()
+
+        ]);
+
+    },
+
+    /* ======================================================
+       APPLICATION INFORMATION
+    ====================================================== */
+
+    version() {
+
+        return {
+
+            name: "Mohamed Said Digital Historical Archive",
+
+            version: "1.0.0",
+
+            platform: "GitHub Pages",
+
+            author: "Mohamed Said Digital Archive"
+
+        };
+
+    }
+
+};
