@@ -1,1179 +1,255 @@
 <!DOCTYPE html>
-
-<html lang="sw" class="scroll-smooth">
-
 <html lang="sw">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohamed Said Digital Historical Archive</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohamed Said Digital Historical Archive</title>
+  <meta name="description" content="Mohamed Said Digital Historical Archive - Kituo cha kuhifadhi historia, nyaraka, vitabu, picha, makala, video na kumbukumbu muhimu za harakati za uhuru wa Tanganyika na Afrika." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Mohamed Said Digital Historical Archive</title>
-
-<meta name="description"
-content="Maktaba ya kidijitali ya Mohamed Said yenye vitabu, nyaraka, picha, video na sauti kuhusu historia ya Tanganyika, TANU na harakati za uhuru.">
-
-<meta name="keywords"
-content="Mohamed Said, Tanganyika, TANU, TAA, History, Archive, Tanzania, Abdulwahid Sykes">
-
-<meta name="author"
-content="Mohamed Said">
-
-<meta name="theme-color"
-content="#050b16">
-
-<meta property="og:type"
-content="website">
-
-<meta property="og:title"
-content="Mohamed Said Digital Historical Archive">
-
-<meta property="og:description"
-content="Digital Historical Archive ya Mohamed Said">
-
-<meta property="og:image"
-content="images/logo.png">
-
-<meta property="og:url"
-content="https://shiosamwanza-source.github.io/Mohamed-Said/">
-
-<link rel="icon"
-href="assets/icons/favicon.png">
-
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-<link rel="stylesheet"
-href="css/main.css">
-
-<link rel="stylesheet"
-href="css/cards.css">
-
-<link rel="stylesheet"
-href="css/responsive.css">
-
-
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/cards.css">
-    <link rel="stylesheet" href="css/responsive.css">
- 
+  <!-- CSS -->
+  <link rel="stylesheet" href="main.css" />
 </head>
-
 <body>
 
-<header class="header">
- 
-
-<div class="container nav">
-
-<a href="index.html"
-class="logo">
-
-<img src="assets/images/logo.png"
-alt="Mohamed Said Archive">
-
-<div>
-
-<h2>Mohamed Said</h2>
-
-<span>Digital Historical Archive</span>
-
-</div>
-
-</a>
-
-<nav>
-
-<ul class="menu">
-
-<li>
-
-<a href="index.html">
-
-Home
-
-</a>
-
-</li>
-
-<li>
-
-<a href="pages/documents.html">
-
-Documents
-
-</a>
-
-</li>
-
-<li>
-
-<a href="pages/photos.html">
-
-Photos
-
-</a>
-
-</li>
-
-<li>
-
-<a href="pages/videos.html">
-
-Videos
-
-</a>
-
-</li>
-
-<li>
-
-<a href="pages/audio.html">
-
-Audio
-
-</a>
-
-</li>
-
-<li>
-
-<a href="pages/about.html">
-
-About
-
-</a>
-
-</li>
-
-</ul>
-
-</nav>
-
-<div class="nav-buttons">
-
-<button id="searchBtn">
-
-<i class="fas fa-search"></i>
-
-</button>
-
-<button id="themeBtn">
-
-<i class="fas fa-moon"></i>
-
-</button>
-
-<button id="menuBtn"
-class="mobile-btn">
-
-<i class="fas fa-bars"></i>
-
-</button>
-
-</div>
-
-</div>
-
-</header>
-
-<main>
-<!-- ================= HERO SECTION ================= -->
-
-<section id="hero" class="hero">
-
-<div class="container hero-grid">
-
-<div class="hero-content">
-
-<div class="hero-tag">
-
-<i class="fas fa-landmark"></i>
-
-<span>Digital Historical Archive</span>
-
-</div>
-
-<h1>
-
-Historia ya Tanganyika
-
-<span>Kwa Ushahidi,</span>
-
-Nyaraka na Kumbukumbu Halisi
-
-</h1>
-
-<p>
-
-Karibu kwenye maktaba rasmi ya Mohamed Said. Chunguza maelfu ya nyaraka,
-vitabu, picha, video na sauti kuhusu historia ya Tanganyika, TANU,
-TAA, harakati za uhuru na viongozi walioandika historia.
-
-</p>
-
-<form class="hero-search">
-
-<div class="search-wrapper">
-
-<i class="fas fa-search"></i>
-
-<input
-
-type="search"
-
-id="heroSearch"
-
-placeholder="Tafuta vitabu, nyaraka, watu au matukio..."
-
-autocomplete="off">
-
-<button type="submit">
-
-Search
-
-</button>
-
-</div>
-
-</form>
-
-<div class="hero-buttons">
-
-<a href="pages/documents.html"
-
-class="btn-main">
-
-<i class="fas fa-book-open"></i>
-
-Browse Documents
-
-</a>
-
-<a href="pages/about.html"
-
-class="btn-second">
-
-<i class="fas fa-user"></i>
-
-About Mohamed Said
-
-</a>
-
-</div>
-
-<div class="hero-stats">
-
-<div>
-
-<h2 id="booksCounter">
-
-0
-
-</h2>
-
-<p>
-
-Documents
-
-</p>
-
-</div>
-
-<div>
-
-<h2 id="photosCounter">
-
-0
-
-</h2>
-
-<p>
-
-Photos
-
-</p>
-
-</div>
-
-<div>
-
-<h2 id="audioCounter">
-
-0
-
-</h2>
-
-<p>
-
-Audio
-
-</p>
-
-</div>
-
-<div>
-
-<h2 id="videoCounter">
-
-0
-
-</h2>
-
-<p>
-
-Videos
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="hero-image">
-
-<img
-
-src="assets/images/mohamed-said-library.jpg"
-
-alt="Mohamed Said">
-
-<div class="hero-badge">
-
-<i class="fas fa-award"></i>
-
-<span>
-
-Historical Research Archive
-
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="scroll-down">
-
-<a href="#featured-documents">
-
-<i class="fas fa-chevron-down"></i>
-
-</a>
-
-</div>
-
-</section>
-<!-- ================= FEATURED DOCUMENTS ================= -->
-
-<section id="featured-documents" class="section">
-
-<div class="container">
-
-<div class="section-header">
-
-<span class="section-tag">Featured Collection</span>
-
-<h2>Nyaraka Muhimu</h2>
-
-<p>
-Baadhi ya nyaraka na vitabu muhimu vinavyopatikana katika maktaba hii.
-</p>
-
-</div>
-
-<div id="featuredDocuments" class="document-grid">
-
-<!-- JavaScript itaingiza featured documents hapa -->
-
-</div>
-
-<div class="section-footer">
-
-<a href="pages/documents.html" class="btn-main">
-
-View All Documents
-
-<i class="fas fa-arrow-right"></i>
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= COLLECTIONS ================= -->
-
-<section id="collections" class="section alt-section">
-
-<div class="container">
-
-<div class="section-header">
-
-<span class="section-tag">Collections</span>
-
-<h2>Makusanyo ya Historia</h2>
-
-<p>
-Chagua mkusanyo unaotaka kuchunguza.
-</p>
-
-</div>
-
-<div class="collection-grid">
-
-<a href="pages/documents.html?category=books" class="collection-card">
-
-<i class="fas fa-book"></i>
-
-<h3>Vitabu</h3>
-
-<p>Vitabu vya historia na tafiti mbalimbali.</p>
-
-</a>
-
-<a href="pages/documents.html?category=tanu" class="collection-card">
-
-<i class="fas fa-landmark"></i>
-
-<h3>TANU</h3>
-
-<p>Nyaraka kuhusu Tanganyika African National Union.</p>
-
-</a>
-
-<a href="pages/documents.html?category=taa" class="collection-card">
-
-<i class="fas fa-scroll"></i>
-
-<h3>TAA</h3>
-
-<p>Kumbukumbu za Tanganyika African Association.</p>
-
-</a>
-
-<a href="pages/photos.html" class="collection-card">
-
-<i class="fas fa-camera-retro"></i>
-
-<h3>Picha</h3>
-
-<p>Matukio, viongozi na nyaraka za picha.</p>
-
-</a>
-
-<a href="pages/videos.html" class="collection-card">
-
-<i class="fas fa-film"></i>
-
-<h3>Video</h3>
-
-<p>Mahojiano, makala na documentary.</p>
-
-</a>
-
-<a href="pages/audio.html" class="collection-card">
-
-<i class="fas fa-headphones"></i>
-
-<h3>Audio</h3>
-
-<p>Hotuba na mahojiano ya sauti.</p>
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= LATEST DOCUMENTS ================= -->
-
-<section id="latest-documents" class="section">
-
-<div class="container">
-
-<div class="section-header">
-
-<span class="section-tag">Latest Uploads</span>
-
-<h2>Nyaraka Zilizoongezwa Hivi Karibuni</h2>
-
-<p>
-Mkusanyiko wa nyaraka mpya ulioongezwa kwenye archive.
-</p>
-
-</div>
-
-<div id="latestDocuments" class="document-grid">
-
-<!-- JavaScript itaweka latest documents -->
-
-</div>
-
-<div class="section-footer">
-
-<a href="pages/documents.html" class="btn-second">
-
-Browse Archive
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-<!-- ================= HISTORICAL TIMELINE ================= -->
-
-<section id="timeline" class="section alt-section">
-
-<div class="container">
-
-<div class="section-header">
-
-<span class="section-tag">Historical Timeline</span>
-
-<h2>Ratiba ya Matukio Muhimu</h2>
-
-<p>
-Safari ya historia ya Tanganyika kupitia matukio muhimu yaliyobadilisha taifa.
-</p>
-
-</div>
-
-<div class="timeline">
-
-<div class="timeline-item">
-
-<div class="timeline-year">1929</div>
-
-<div class="timeline-content">
-
-<h3>Kuzaliwa kwa TAA</h3>
-
-<p>
-Tanganyika African Association (TAA) lilianza kuwa jukwaa muhimu la kuunganisha Waafrika katika kudai haki zao.
-</p>
-
-</div>
-
-</div>
-
-<div class="timeline-item">
-
-<div class="timeline-year">1954</div>
-
-<div class="timeline-content">
-
-<h3>Kuanzishwa kwa TANU</h3>
-
-<p>
-Tanganyika African National Union (TANU) ilianzishwa chini ya uongozi wa Julius Kambarage Nyerere.
-</p>
-
-</div>
-
-</div>
-
-<div class="timeline-item">
-
-<div class="timeline-year">1961</div>
-
-<div class="timeline-content">
-
-<h3>Uhuru wa Tanganyika</h3>
-
-<p>
-Tanganyika ilipata uhuru tarehe 9 Desemba 1961 baada ya mapambano ya kisiasa yaliyodumu kwa miaka mingi.
-</p>
-
-</div>
-
-</div>
-
-<div class="timeline-item">
-
-<div class="timeline-year">1964</div>
-
-<div class="timeline-content">
-
-<h3>Muungano</h3>
-
-<p>
-Tanganyika na Zanzibar ziliungana na kuunda Jamhuri ya Muungano wa Tanzania.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= HISTORICAL FIGURES ================= -->
-
-<section id="historical-figures" class="section">
-
-<div class="container">
-
-<div class="section-header">
-
-<span class="section-tag">Historical Figures</span>
-
-<h2>Viongozi na Waasisi</h2>
-
-<p>
-Baadhi ya watu waliotoa mchango mkubwa katika historia ya Tanganyika.
-</p>
-
-</div>
-
-<div class="figure-grid">
-
-<div class="figure-card">
-
-<img src="assets/images/julius-nyerere.jpg" alt="Julius Nyerere">
-
-<h3>Julius K. Nyerere</h3>
-
-<p>Kiongozi wa TANU na Rais wa kwanza wa Tanganyika.</p>
-
-</div>
-
-<div class="figure-card">
-
-<img src="assets/images/abdulwahid-sykes.jpg" alt="Abdulwahid Sykes">
-
-<h3>Abdulwahid Sykes</h3>
-
-<p>Mmoja wa waanzilishi muhimu wa harakati za kisiasa za Waafrika.</p>
-
-</div>
-
-<div class="figure-card">
-
-<img src="assets/images/mohamed-said.jpg" alt="Mohamed Said">
-
-<h3>Mohamed Said</h3>
-
-<p>Mwandishi na mtafiti wa historia ya Tanganyika.</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= QUOTE ================= -->
-
-<section class="quote-section">
-
-<div class="container">
-
-<blockquote>
-
-<i class="fas fa-quote-left"></i>
-
-<p>
-
-"Historia si simulizi za jana pekee; ni msingi wa kuelewa tulikotoka na kuelekea."
-
-</p>
-
-<footer>
-
-— Mohamed Said
-
-</footer>
-
-</blockquote>
-
-</div>
-
-</section>
-
-<!-- ================= CALL TO ACTION ================= -->
-
-<section class="archive-cta">
-
-<div class="container">
-
-<h2>Chunguza Maktaba Nzima ya Historia</h2>
-
-<p>
-
-Fungua maelfu ya nyaraka, picha, video na kumbukumbu za kihistoria kupitia maktaba yetu ya kidijitali.
-
-</p>
-
-<a href="pages/documents.html" class="btn-main">
-
-<i class="fas fa-folder-open"></i>
-
-Open Digital Archive
-
-</a>
-
-</div>
-
-</section>
-<!-- ================= PHOTO GALLERY ================= -->
-
-<section id="photos" class="section">
-
-<div class="container">
-
-<div class="section-header">
-
-<span class="section-tag">Photo Gallery</span>
-
-<h2>Picha za Historia</h2>
-
-<p>
-Picha za viongozi, mikutano, nyaraka na matukio muhimu ya kihistoria.
-</p>
-
-</div>
-
-<div id="photoGallery" class="gallery-grid">
-
-<!-- JavaScript itaingiza picha hapa -->
-
-</div>
-
-<div class="section-footer">
-
-<a href="pages/photos.html" class="btn-main">
-
-View All Photos
-
-<i class="fas fa-arrow-right"></i>
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= VIDEO LIBRARY ================= -->
-
-<section id="videos" class="section alt-section">
-
-<div class="container">
-
-<div class="section-header">
-
-<span class="section-tag">Video Library</span>
-
-<h2>Maktaba ya Video</h2>
-
-<p>
-Mahojiano, documentary na vipindi vya historia.
-</p>
-
-</div>
-
-<div id="videoLibrary" class="video-grid">
-
-<!-- JavaScript itaweka video hapa -->
-
-</div>
-
-<div class="section-footer">
-
-<a href="pages/videos.html" class="btn-second">
-
-Browse Videos
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= AUDIO LIBRARY ================= -->
-
-<section id="audio" class="section">
-
-<div class="container">
-
-<div class="section-header">
-
-<span class="section-tag">Audio Archive</span>
-
-<h2>Maktaba ya Sauti</h2>
-
-<p>
-Hotuba, mahojiano na rekodi mbalimbali za kihistoria.
-</p>
-
-</div>
-
-<div id="audioLibrary" class="audio-grid">
-
-<!-- JavaScript itaweka audio hapa -->
-
-</div>
-
-<div class="section-footer">
-
-<a href="pages/audio.html" class="btn-main">
-
-Browse Audio
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= NEWSLETTER ================= -->
-
-<section class="newsletter">
-
-<div class="container newsletter-box">
-
-<div>
-
-<h2>Pata Taarifa Mpya</h2>
-
-<p>
-
-Jiunge kupokea taarifa za nyaraka mpya, vitabu na makala zinazoongezwa kwenye archive.
-
-</p>
-
-</div>
-
-<form class="newsletter-form">
-
-<input
-type="email"
-placeholder="Weka barua pepe yako"
-required>
-
-<button type="submit">
-
-Subscribe
-
-</button>
-
-</form>
-
-</div>
-
-</section>
-
-<!-- ================= FOOTER ================= -->
-
-<footer class="footer">
-
-<div class="container footer-grid">
-
-<div>
-
-<h3>Mohamed Said Digital Historical Archive</h3>
-
-<p>
-
-Kituo cha kidijitali cha kuhifadhi na kusambaza historia ya Tanganyika kupitia nyaraka, picha, video na sauti.
-
-</p>
-
-</div>
-
-<div>
-
-<h4>Quick Links</h4>
-
-<ul>
-
-<li><a href="index.html">Home</a></li>
-
-<li><a href="pages/documents.html">Documents</a></li>
-
-<li><a href="pages/photos.html">Photos</a></li>
-
-<li><a href="pages/videos.html">Videos</a></li>
-
-<li><a href="pages/audio.html">Audio</a></li>
-
-<li><a href="pages/about.html">About</a></li>
-
-</ul>
-
-</div>
-
-<div>
-
-<h4>Collections</h4>
-
-<ul>
-
-<li><a href="pages/documents.html?category=tanu">TANU</a></li>
-
-<li><a href="pages/documents.html?category=taa">TAA</a></li>
-
-<li><a href="pages/documents.html?category=books">Books</a></li>
-
-<li><a href="pages/documents.html?category=letters">Letters</a></li>
-
-</ul>
-
-</div>
-
-<div>
-
-<h4>Follow Us</h4>
-
-<div class="social-links">
-
-<a href="#"><i class="fab fa-facebook-f"></i></a>
-
-<a href="#"><i class="fab fa-youtube"></i></a>
-
-<a href="#"><i class="fab fa-x-twitter"></i></a>
-
-<a href="#"><i class="fab fa-instagram"></i></a>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="footer-bottom">
-
-<p>
-
-© 2026 Mohamed Said Digital Historical Archive. All Rights Reserved.
-
-</p>
-
-</div>
-
-</footer>
-
-</main>
-
-<script src="js/utils.js"></script>
-
-<script src="js/search.js"></script>
-
-<script src="js/documents.js"></script>
-
-
-    <div class="container">
-        <h1>Mohamed Said Digital Historical Archive</h1>
-        <p>Kumbukumbu za Historia ya Tanganyika, Zanzibar na Afrika Mashariki</p>
-
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="pages/documents.html">Documents</a>
-            <a href="pages/photos.html">Photos</a>
-            <a href="pages/videos.html">Videos</a>
-            <a href="pages/audio.html">Audio</a>
-            <a href="pages/about.html">About</a>
-        </nav>
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="loader-wrapper">
+      <div class="archive-logo"><span>M</span><span>S</span></div>
+      <div class="loading-bar"><span></span></div>
     </div>
-</header>
+  </div>
 
-<section class="hero">
+  <!-- HEADER -->
+  <header id="header">
     <div class="container">
-        <h2>Historia Hai Kupitia Nyaraka, Picha na Ushuhuda</h2>
-
-        <p>
-            Karibu katika maktaba ya kidijitali ya Mohamed Said yenye
-            maelfu ya nyaraka, picha za kihistoria, vitabu,
-            mahojiano na kumbukumbu za harakati za uhuru.
-        </p>
-
-        <a class="btn" href="pages/documents.html">
-            Soma Nyaraka
+      <div class="logo">
+        <a href="#home">
+          <img src="assets/images/logo.png" alt="Logo" class="logo-img" />
+          <div>
+            <h2>Mohamed Said</h2>
+            <span>Digital Historical Archive</span>
+          </div>
         </a>
+      </div>
+      <nav id="navbar">
+        <ul>
+          <li><a href="#home" class="active">Nyumbani</a></li>
+          <li><a href="#about">Kuhusu</a></li>
+          <li><a href="#collections">Makusanyo</a></li>
+          <li><a href="#books">Vitabu</a></li>
+          <li><a href="#gallery">Picha</a></li>
+          <li><a href="#timeline">Timeline</a></li>
+          <li><a href="#contact">Mawasiliano</a></li>
+        </ul>
+      </nav>
+      <button id="menuToggle"><i class="fa-solid fa-bars"></i></button>
     </div>
-</section>
+  </header>
 
-<section class="container">
-
-<h2>Picha Maalum za Historia</h2>
-
-<div class="photo-grid" id="photo-gallery">
-
-</div>
-
-</section>
-<div class="photo-grid" id="photo-gallery"></div>
-<section class="featured">
-    <div class="container">
-
-        <h2>Makusanyo Maalum</h2>
-
-        <div class="feature-grid">
-
-            <div class="feature-card">
-                <h3>📚 Nyaraka</h3>
-                <p>Barua, hati, magazeti na nyaraka za kihistoria.</p>
-                <a href="pages/documents.html">Fungua →</a>
-            </div>
-
-            <div class="feature-card">
-                <h3>📸 Picha</h3>
-                <p>Picha adimu za viongozi, wanaharakati na matukio ya historia.</p>
-                <a href="pages/photos.html">Tazama →</a>
-            </div>
-
-            <div class="feature-card">
-                <h3>🎥 Video</h3>
-                <p>Mahojiano na kumbukumbu za historia.</p>
-                <a href="pages/videos.html">Tazama →</a>
-            </div>
-
-            <div class="feature-card">
-                <h3>🎙 Audio</h3>
-                <p>Hotuba, mahojiano na simulizi za kihistoria.</p>
-                <a href="pages/audio.html">Sikiliza →</a>
-            </div>
-
+  <!-- HERO (Premium Video/Image Background Style) -->
+  <section id="home" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-container">
+      <div class="hero-content reveal">
+        <span class="hero-tag">HISTORIA • NYARAKA • UKWELI</span>
+        <h1>Mohamed Said <span>Digital Historical Archive</span></h1>
+        <p>Kituo kikubwa cha kuhifadhi, kutafiti na kusambaza historia ya Tanganyika, Tanzania na Afrika kupitia nyaraka halisi, vitabu, picha, mahojiano, makala na ushahidi wa kihistoria.</p>
+        <div class="hero-buttons">
+          <a href="#collections" class="btn btn-primary"><i class="fa-solid fa-folder-open"></i> Explore Archive</a>
+          <a href="#about" class="btn btn-outline"><i class="fa-solid fa-circle-info"></i> Learn More</a>
         </div>
-
-    </div>
-</section>
-
-<section class="stats">
-    <div class="container">
-
-        <h2>Mkusanyiko Unaendelea Kukua</h2>
-
-        <div class="feature-grid">
-
-            <div class="feature-card">
-                <h2>1000+</h2>
-                <p>Nyaraka</p>
-            </div>
-
-            <div class="feature-card">
-                <h2>500+</h2>
-                <p>Picha</p>
-            </div>
-
-            <div class="feature-card">
-                <h2>100+</h2>
-                <p>Video</p>
-            </div>
-
-            <div class="feature-card">
-                <h2>50+</h2>
-                <p>Audio</p>
-            </div>
-
+        <div class="hero-stats">
+          <div class="stat"><h2 data-count="1000">0</h2><span>Nyaraka</span></div>
+          <div class="stat"><h2 data-count="500">0</h2><span>Picha</span></div>
+          <div class="stat"><h2 data-count="200">0</h2><span>Vitabu</span></div>
         </div>
-
+      </div>
+      <div class="hero-image reveal">
+        <div class="portrait-card">
+          <img src="assets/images/mohamed-said.jpg" alt="Mohamed Said" />
+          <div class="floating-badge"><i class="fa-solid fa-landmark"></i><span>History Lives Here</span></div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
-<footer class="footer">
+  <!-- ABOUT -->
+  <section id="about" class="about section">
     <div class="container">
-
-        <h3>Mohamed Said Digital Historical Archive</h3>
-
-        <p>
-            Kuhifadhi historia ya Tanganyika, Zanzibar na Afrika Mashariki
-            kwa vizazi vya sasa na vijavyo.
-        </p>
-
-        <p>&copy; 2026 Mohamed Said Archive.</p>
-
+      <div class="section-header reveal">
+        <span class="section-tag">ABOUT THE ARCHIVE</span>
+        <h2>Kuhusu Archive Hii</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-image reveal">
+          <img src="assets/images/julius-nyerere.jpg" alt="Historical Archive" />
+        </div>
+        <div class="about-content reveal">
+          <h3>Historia Inapaswa Kuhifadhiwa kwa Vizazi Vijavyo</h3>
+          <p>Mohamed Said amekuwa miongoni mwa watafiti wa historia waliotumia maisha yao kukusanya kumbukumbu muhimu kuhusu harakati za uhuru, viongozi wa kitaifa, wanaharakati, jamii, taasisi na matukio yaliyounda historia ya Tanzania.</p>
+          <p>Kupitia archive hii, kila mtu anaweza kupata taarifa sahihi zinazotegemea ushahidi badala ya simulizi zisizo na rejea.</p>
+          <div class="about-features">
+            <div class="feature"><i class="fa-solid fa-book"></i><div><h4>Vitabu vya Historia</h4></div></div>
+            <div class="feature"><i class="fa-solid fa-file-lines"></i><div><h4>Nyaraka Halisi</h4></div></div>
+            <div class="feature"><i class="fa-solid fa-camera-retro"></i><div><h4>Picha za Zamani</h4></div></div>
+            <div class="feature"><i class="fa-solid fa-film"></i><div><h4>Video Archive</h4></div></div>
+          </div>
+        </div>
+      </div>
     </div>
-</footer>
+  </section>
 
->>>>>>> 316a3599 (Update homepage)
-<script src="js/app.js"></script>
+  <!-- COLLECTIONS -->
+  <section id="collections" class="collections section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">COLLECTIONS</span>
+        <h2>Makusanyo ya Archive</h2>
+      </div>
+      <div class="collection-grid">
+        <article class="collection-card reveal"><i class="fa-solid fa-book-open"></i><h3>Vitabu</h3><p>Historia ya Tanganyika, Afrika Mashariki, ukoloni, uhuru na viongozi mbalimbali.</p><a href="#books">Soma Zaidi</a></article>
+        <article class="collection-card reveal"><i class="fa-solid fa-folder-open"></i><h3>Nyaraka</h3><p>Barua, hati rasmi, magazeti, kumbukumbu na taarifa za kihistoria.</p><a href="#books">Fungua</a></article>
+        <article class="collection-card reveal"><i class="fa-solid fa-image"></i><h3>Picha</h3><p>Mkusanyiko mkubwa wa picha za viongozi, wanaharakati na matukio muhimu.</p><a href="#gallery">Tazama</a></article>
+        <article class="collection-card reveal"><i class="fa-solid fa-landmark"></i><h3>Heroes</h3><p>Mashujaa waliosahaulika na waliounda historia ya taifa.</p><a href="#timeline">Explore</a></article>
+      </div>
+    </div>
+  </section>
 
+  <!-- BOOKS -->
+  <section id="books" class="books section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">DIGITAL LIBRARY</span>
+        <h2>Vitabu Maarufu</h2>
+      </div>
+      <div class="books-grid">
+        <article class="book-card reveal">
+          <img src="assets/images/abdulwahid-sykes.jpg" alt="Book One" />
+          <div class="book-info"><h3>The Life and Times of Abdulwahid Sykes</h3><span>Mohamed Said</span><a href="#">View Book</a></div>
+        </article>
+        <article class="book-card reveal">
+          <img src="assets/images/julius-nyerere.jpg" alt="Book Two" />
+          <div class="book-info"><h3>Tanganyika Before Independence</h3><span>Mohamed Said</span><a href="#">View Book</a></div>
+        </article>
+        <article class="book-card reveal">
+          <img src="assets/images/mohamed-said.jpg" alt="Book Three" />
+          <div class="book-info"><h3>African Nationalism</h3><span>Historical Collection</span><a href="#">View Book</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="gallery section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">PHOTO ARCHIVE</span>
+        <h2>Picha za Historia</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal"><img src="assets/images/mohamed-said.jpg" alt="Gallery 1" /></div>
+        <div class="gallery-item reveal"><img src="assets/images/julius-nyerere.jpg" alt="Gallery 2" /></div>
+        <div class="gallery-item reveal"><img src="assets/images/abdulwahid-sykes.jpg" alt="Gallery 3" /></div>
+        <div class="gallery-item reveal"><img src="assets/images/logo.png" alt="Gallery 4" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline" class="timeline section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">HISTORICAL TIMELINE</span>
+        <h2>Safari ya Historia</h2>
+      </div>
+      <div class="timeline-wrapper">
+        <div class="timeline-item reveal"><span class="year">1885</span><div class="timeline-content"><h3>Mwanzo wa Utawala wa Kijerumani</h3><p>Kipindi kilichoanza kubadili historia ya Tanganyika kwa namna kubwa.</p></div></div>
+        <div class="timeline-item reveal"><span class="year">1954</span><div class="timeline-content"><h3>Kuzaliwa kwa TANU</h3><p>Mwanzo wa harakati mpya za kisiasa kuelekea uhuru wa Tanganyika.</p></div></div>
+        <div class="timeline-item reveal"><span class="year">1961</span><div class="timeline-content"><h3>Uhuru wa Tanganyika</h3><p>Tanganyika ilipata uhuru wake tarehe 9 Desemba 1961.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT (Namba imefichwa, WhatsApp ndiyo kitendo) -->
+  <section id="contact" class="contact section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">CONTACT</span>
+        <h2>Wasiliana Nasi</h2>
+        <p>Tuma maoni au ujumbe moja kwa moja kupitia WhatsApp au Fomu hapa chini.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <div class="info-box">
+            <i class="fa-solid fa-envelope"></i>
+            <div>
+              <h4>Email</h4>
+              <p><a href="mailto:samitungo@gmail.com" style="color: inherit;">samitungo@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="info-box">
+            <i class="fa-brands fa-whatsapp"></i>
+            <div>
+              <h4>WhatsApp / Maoni</h4>
+              <p>Bofya kitufe hapa chini kuongea nasi moja kwa moja.</p>
+              <!-- Namba imefichwa kwenye link, haionekani kwenye maandishi -->
+              <a href="https://wa.me/255687500699?text=Habari%20Mohamed%20Said,%20nina%20maoni%20na%20ujumbe%20hapa:" target="_blank" class="btn-whatsapp">
+                <i class="fa-brands fa-whatsapp"></i> Tuma Ujumbe
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <form class="contact-form reveal">
+          <input type="text" placeholder="Jina lako" required />
+          <input type="email" placeholder="Barua pepe yako" required />
+          <textarea rows="6" placeholder="Andika maoni au ujumbe wako hapa..."></textarea>
+          <button type="submit" class="btn btn-primary">Tuma Ujumbe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h3>Mohamed Said</h3>
+          <p>Kuhifadhi historia, nyaraka na urithi wa Tanganyika, Tanzania na Afrika kwa vizazi vya sasa na vijavyo.</p>
+        </div>
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/share/1H1sezsZZ1/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://youtube.com/@samitungo?si=UhguoaDoiIZP0KIe" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://x.com/mohamedsidney" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Mohamed Said Digital Historical Archive. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP BUTTON (Haionekani namba) -->
+  <a href="https://wa.me/255687500699?text=Habari%20Mohamed%20Said,%20nina%20maoni:" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- BACK TO TOP -->
+  <button id="backToTop"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <!-- JAVASCRIPT -->
+  <script src="app.js"></script>
 </body>
-
 </html>
-<script src="js/app.js"></script>
-<section class="official-links">
-    <div class="container">
-
-        <h2>Official Sources</h2>
-
-        <div class="feature-grid">
-
-            <div class="feature-card">
-                <h3>📝 Mohamed Said Blog</h3>
-                <p>Makala na tafiti za historia.</p>
-                <a href="https://mohamedsaidsalum.blogspot.com/?m=1" target="_blank">
-                    Visit Blog
-                </a>
-            </div>
-
-            <div class="feature-card">
-                <h3>▶️ YouTube Podcast</h3>
-                <p>KUTOKA MAKTABA YA MOHAMED SAID PODCAST</p>
-                <a href="https://youtube.com/@samitungo" target="_blank">
-                    Watch Videos
-                </a>
-            </div>
-
-            <div class="feature-card">
-                <h3>📘 Facebook</h3>
-                <p>Fuata machapisho ya Mohamed Said.</p>
-                <a href="https://www.facebook.com/share/1FFt7dNdm6/" target="_blank">
-                    Open Facebook
-                </a>
-            </div>
-
-            <div class="feature-card">
-                <h3>✖️ X (Twitter)</h3>
-                <p>@mohamedsidney</p>
-                <a href="https://x.com/mohamedsidney" target="_blank">
-                    Visit X
-                </a>
-            </div>
-
-        </div>
-
-    </div>
-</section>
-
-<script src="js/app.js"></script>
-
-</body>
-</html>
-
