@@ -195,6 +195,7 @@ const App = {
         }
 
         this.featuredDocuments.innerHTML = featured.map(doc => `
+        this.documentCard(doc))
 
             <article class="document-card">
 
