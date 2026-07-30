@@ -1,109 +1,268 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sw">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Documents Archive</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nyaraka za Historia - Mohamed Said Archive</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-<style>
-body{
-    margin:0;
-    background:#0f172a;
-    color:white;
-    font-family:Arial,sans-serif;
-}
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-header{
-    background:#111827;
-    padding:25px;
-    text-align:center;
-}
-
-h1{
-    color:#fbbf24;
-}
-
-#documents{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:20px;
-    padding:20px;
-}
-
-.card{
-    background:#1e293b;
-    padding:20px;
-    border-radius:12px;
-}
-
-button{
-    background:#fbbf24;
-    color:black;
-    border:none;
-    padding:12px 20px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-button:hover{
-    opacity:.9;
-}
-</style>
-
+  <!-- CSS (Hakikisha paths zinaendana na folder lako) -->
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/cards.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
 </head>
 <body>
 
-<header>
-<h1>📄 Documents Archive</h1>
-<p>Mohamed Said Digital Historical Archive</p>
-</header>
+  <!-- HEADER -->
+  <header id="header">
+    <div class="container nav">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/logo.png" alt="Mohamed Said Archive" class="logo-img" />
+        <div>
+          <h2>Mohamed Said</h2>
+          <span>Digital Historical Archive</span>
+        </div>
+      </a>
+      
+      <nav id="navbar">
+        <ul class="menu">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="documents.html" class="active">Documents</a></li>
+          <li><a href="photos.html">Photos</a></li>
+          <li><a href="videos.html">Videos</a></li>
+          <li><a href="audio.html">Audio</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+      
+      <div class="nav-buttons">
+        <button id="menuToggle"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
 
-<div id="documents"></div>
+  <!-- PAGE HERO -->
+  <section class="hero" style="min-height: 40vh; padding: 140px 0 40px;">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="section-header reveal active">
+        <span class="section-tag">HISTORICAL DOCUMENTS</span>
+        <h1>Nyaraka za Historia</h1>
+        <p>Chunguza mkusanyiko wa nyaraka halisi, hati, barua na maandishi muhimu ya kihistoria.</p>
+      </div>
 
-<script>
+      <!-- Search & Filters -->
+      <div class="documents-controls reveal active">
+        <div class="search-wrapper" style="max-width: 100%; margin-bottom: 20px;">
+          <i class="fas fa-search"></i>
+          <input type="search" id="searchDocs" placeholder="Tafuta kwa jina la hati au mwandishi..." autocomplete="off">
+        </div>
+        <div id="categoryFilters" class="category-filters">
+          <!-- Categories zitajazwa na JavaScript -->
+        </div>
+      </div>
+    </div>
+  </section>
 
-fetch("/data/metadata/documents.json")
-.then(r=>r.json())
-.then(data=>{
+  <!-- DOCUMENTS GRID -->
+  <section class="section" style="padding-top: 20px;">
+    <div class="container">
+      <div id="documentsGrid" class="document-grid">
+        <!-- Loading Skeletons au Document Cards zitawekwa hapa -->
+      </div>
+      <div id="emptyState" class="empty-state hidden">
+        <i class="fas fa-folder-open"></i>
+        <h3>Hakuna Nyaraka Zilizopatikana</h3>
+        <p>Samahani, hakuna hati inayofananishwa na ulichotafuta. Jaribu kutumia neno lingine.</p>
+      </div>
+    </div>
+  </section>
 
-const container=document.getElementById("documents");
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h3>Mohamed Said</h3>
+          <p>Kituo cha kidijitali cha kuhifadhi na kusambaza historia ya Tanganyika kupitia nyaraka, picha, video na sauti.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="documents.html">Documents</a></li>
+            <li><a href="photos.html">Photos</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/share/1FFt7dNdm6/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://youtube.com/@samitungo" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://x.com/mohamedsidney" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Mohamed Said Digital Historical Archive. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
 
-data.forEach(doc=>{
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/255687500699?text=Habari%20Mohamed%20Said,%20nina%20maoni:" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
 
-const card=document.createElement("div");
-card.className="card";
+  <!-- BACK TO TOP -->
+  <button id="backToTop"><i class="fa-solid fa-arrow-up"></i></button>
 
-card.innerHTML=`
-<h2>${doc.title}</h2>
+  <!-- JAVASCRIPT YA UKURASA HUU -->
+  <script>
+    let allDocuments = [];
+    let currentCategory = 'All';
 
-<p><b>Author:</b> ${doc.author}</p>
+    // 1. Initial Load
+    document.addEventListener("DOMContentLoaded", () => {
+      initUI();
+      loadDocuments();
+    });
 
-<p><b>Year:</b> ${doc.year}</p>
+    // 2. UI Interactions (Menu, Scroll, Back to top)
+    function initUI() {
+      const menuToggle = document.getElementById("menuToggle");
+      const navbar = document.getElementById("navbar");
+      const backToTop = document.getElementById("backToTop");
+      const header = document.getElementById("header");
 
-<p>${doc.description}</p>
+      menuToggle.addEventListener("click", () => navbar.classList.toggle("active"));
+      document.querySelectorAll("#navbar a").forEach(link => {
+        link.addEventListener("click", () => navbar.classList.remove("active"));
+      });
 
-<button>Open Document</button>
-`;
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) header.classList.add("scrolled");
+        else header.classList.remove("scrolled");
+        
+        if (window.scrollY > 300) backToTop.style.display = "block";
+        else backToTop.style.display = "none";
+      });
 
-card.querySelector("button").onclick=function(){
-window.open("/"+doc.file,"_blank");
-};
+      backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-container.appendChild(card);
+      // Search Event Listener
+      document.getElementById("searchDocs").addEventListener("input", (e) => {
+        renderDocuments(e.target.value);
+      });
+    }
 
-});
+    // 3. Fetch Data from JSON
+    async function loadDocuments() {
+      const grid = document.getElementById("documentsGrid");
+      
+      // Show Loading Skeletons
+      grid.innerHTML = Array(6).fill().map(() => `
+        <div class="skeleton-card">
+          <div class="skeleton skeleton-image"></div>
+          <div class="skeleton skeleton-title" style="margin: 20px;"></div>
+          <div class="skeleton skeleton-text" style="margin: 0 20px 10px;"></div>
+          <div class="skeleton skeleton-text" style="margin: 0 20px 20px; width: 60%;"></div>
+        </div>
+      `).join('');
 
-})
-.catch(err=>{
+      try {
+        // Kama faili lipo kwenye folder la pages/, tunatumia ../data/documents.json
+        const response = await fetch('../data/documents.json');
+        if (!response.ok) throw new Error("Failed to load");
+        allDocuments = await response.json();
+        
+        renderCategories();
+        renderDocuments();
+      } catch (error) {
+        console.error("Error loading documents:", error);
+        grid.innerHTML = `<p class="empty-state">Samahani, imeshindikana kupakia nyaraka. Jaribu tena baadaye.</p>`;
+      }
+    }
 
-document.getElementById("documents").innerHTML="<h2>Documents hazikupatikana.</h2>";
+    // 4. Render Category Filters
+    function renderCategories() {
+      const categories = ['All', ...new Set(allDocuments.map(doc => doc.category))];
+      const filterContainer = document.getElementById("categoryFilters");
+      
+      filterContainer.innerHTML = categories.map(cat => `
+        <button class="filter-btn ${cat === currentCategory ? 'active' : ''}" onclick="filterCategory('${cat}')">
+          ${cat}
+        </button>
+      `).join('');
+    }
 
-console.log(err);
+    // 5. Filter by Category
+    function filterCategory(category) {
+      currentCategory = category;
+      renderCategories();
+      renderDocuments();
+    }
 
-});
+    // 6. Render Document Cards to UI
+    function renderDocuments(searchTerm = '') {
+      const grid = document.getElementById("documentsGrid");
+      const emptyState = document.getElementById("emptyState");
+      
+      let filteredDocs = allDocuments;
 
-</script>
+      // Filter by Category
+      if (currentCategory !== 'All') {
+        filteredDocs = filteredDocs.filter(doc => doc.category === currentCategory);
+      }
 
+      // Filter by Search Term
+      if (searchTerm) {
+        filteredDocs = filteredDocs.filter(doc => 
+          doc.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (doc.author && doc.author.toLowerCase().includes(searchTerm.toLowerCase()))
+        );
+      }
+
+      // Show Empty State
+      if (filteredDocs.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      emptyState.classList.add('hidden');
+
+      // Render Cards
+      grid.innerHTML = filteredDocs.map(doc => `
+        <article class="document-card">
+          <div class="document-image">
+            <img src="../${doc.cover || 'assets/images/default.jpg'}" alt="${doc.title}">
+            ${doc.featured ? '<span class="card-ribbon">Featured</span>' : ''}
+          </div>
+          <div class="document-content">
+            <span class="status-badge badge-featured">${doc.category || 'Document'}</span>
+            <h3 class="document-title">${doc.title}</h3>
+            <p class="document-description">${doc.description || 'Hakuna maelezo yaliyowekwa.'}</p>
+            
+            <div class="document-meta">
+              <span><i class="fas fa-user"></i> ${doc.author || 'Mohamed Said'}</span>
+              <span><i class="fas fa-calendar-alt"></i> ${doc.year || 'N/P'}</span>
+            </div>
+            
+            <a href="../${doc.file}" target="_blank" class="btn btn-primary document-link">
+              <i class="fas fa-file-pdf"></i> Fungua Nyaraka
+            </a>
+          </div>
+        </article>
+      `).join('');
+    }
+  </script>
 </body>
 </html>

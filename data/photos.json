@@ -3,77 +3,121 @@
     "id": 1,
     "title": "George Arnautoglu",
     "category": "Wafadhili wa TANU",
+    "year": "1950s",
+    "tags": ["TANU", "Mfadhili", "Biashara", "Uhuru"],
+    "description": "Mfanyabiashara aliyejulikana kwa kuwapa msaada wa kifedha na kimaadili viongozi wa TANU wakati wa mapambano ya uhuru wa Tanganyika.",
     "image": "assets/images/george-arnautoglu.jpg",
-    "description": "Mfanyabiashara na mfadhili wa harakati za uhuru wa Tanganyika."
+    "date": "2024-05-10",
+    "featured": true
   },
   {
     "id": 2,
     "title": "Victor Mkello",
     "category": "Harakati za Uhuru",
+    "year": "1950s",
+    "tags": ["Wafanyakazi", "TFL", "TANU", "Uhuru"],
+    "description": "Kiongozi wa wafanyakazi na Rais wa Shirikisho la Wafanyakazi wa Tanganyika (TFL), aliyejitahidi kuunganisha harakati za wafanyakazi na dhamira ya TANU.",
     "image": "assets/images/victor-mkello.jpg",
-    "description": "Rais wa Shirikisho la Wafanyakazi wa Tanganyika."
+    "date": "2024-05-12",
+    "featured": false
   },
   {
     "id": 3,
     "title": "Mohamed Omar Mkwawa",
     "category": "Harakati za Uhuru",
+    "year": "1960s",
+    "tags": ["Zanzibar", "Mapinduzi", "Siasa"],
+    "description": "Mshiriki muhimu katika matukio ya Mapinduzi ya Zanzibar ya mwaka 1964 na mwanaharakati wa kisiasa aliyeathiri muunganisho wa Tanganyika na Zanzibar.",
     "image": "assets/images/mohamed-omar-mkwawa.jpg",
-    "description": "Mshiriki wa matukio ya Mapinduzi ya Zanzibar na harakati za kisiasa."
+    "date": "2024-05-15",
+    "featured": false
   },
   {
     "id": 4,
     "title": "Dome Okochi Budohi",
     "category": "Mashujaa Waliosahaulika",
+    "year": "1950s",
+    "tags": ["Afrika Mashariki", "Uhuru", "Koloni"],
+    "description": "Mkenya aliyejihusisha kwa karibu na harakati za uhuru wa Tanganyika, akionyesha ushirikiano wa kikanda Afrika Mashariki katika mapambano dhidi ya ukoloni.",
     "image": "assets/images/dome-budohi.jpg",
-    "description": "Mkenya aliyeshiriki katika harakati za uhuru wa Tanganyika."
+    "date": "2024-05-18",
+    "featured": false
   },
   {
     "id": 5,
     "title": "Abdilatif Abdalla",
     "category": "Waandishi",
+    "year": "1970s",
+    "tags": ["Mshairi", "Fasihi", "Kenya", "Mahojiano"],
+    "description": "Mwandishi, mshairi, na mwanaharakati mashuhuri wa Kenya, aliyejitolea katika kuandika na kuchambua matatizo ya kisiasa na kijamii Afrika.",
     "image": "assets/images/abdilatif-abdalla.jpg",
-    "description": "Mwandishi na mshairi mashuhuri wa Kenya."
+    "date": "2024-05-20",
+    "featured": true
   },
   {
     "id": 6,
     "title": "Amir Jamal",
     "category": "Viongozi",
+    "year": "1960s",
+    "tags": ["TANU", "Waziri", "Uchumi", "Serikali"],
+    "description": "Kiongozi wa TANU na Waziri wa Fedha wa Tanzania, ambaye uongozi wake ulichangia sana kujenga uchumi wa taifa mpya baada ya uhuru.",
     "image": "assets/images/amir-jamal.jpg",
-    "description": "Kiongozi wa TANU na Waziri wa Fedha wa Tanzania."
+    "date": "2024-05-22",
+    "featured": true
   },
   {
     "id": 7,
     "title": "Rashid Makoko",
     "category": "Harakati za Uhuru",
+    "year": "1950s",
+    "tags": ["TANU", "Tanga", "Mwanaharakati"],
+    "description": "Mwanaharakati wa TANU kutoka mkoa wa Tanga, aliyechangia kwenye usambazaji wa chama na kuhamasisha masikilizo ya wananchi kupinga utawala wa kikoloni.",
     "image": "assets/images/rashid-makoko.jpg",
-    "description": "Mshiriki wa harakati za TANU mjini Tanga."
+    "date": "2024-05-25",
+    "featured": false
   },
   {
     "id": 8,
     "title": "Sadiki Patwa",
     "category": "Harakati za Uhuru",
+    "year": "1950s",
+    "tags": ["Mfadhili", "TANU", "Uhuru"],
+    "description": "Mfadhili na mshiriki muhimu wa harakati za uhuru, aliyejitahidi kuhakikisha chama cha TANU kinapata rasilimali za kifedha kwa ajili ya kampeni zake.",
     "image": "assets/images/sadiki-patwa.jpg",
-    "description": "Mfadhili na mshiriki wa harakati za uhuru."
+    "date": "2024-05-28",
+    "featured": false
   },
   {
     "id": 9,
     "title": "Mohamed Said akiwa na Abdilatif Abdalla",
     "category": "Mohamed Said Collection",
+    "year": "2000s",
+    "tags": ["Mohamed Said", "Abdilatif Abdalla", "Mkutano", "Mahojiano"],
+    "description": "Picha ya kihistoria inayoonyesha mkutano na mazungumzo kati ya mtafiti Mohamed Said na mwandishi Abdilatif Abdalla kuhusu masuala ya kihistoria na fasihi.",
     "image": "assets/images/mohamed-abdilatif-abdalla.jpg",
-    "description": "Mkutano kati ya Mohamed Said na Abdilatif Abdalla."
+    "date": "2024-06-01",
+    "featured": true
   },
   {
     "id": 10,
     "title": "Sal Davis",
     "category": "Sanaa",
+    "year": "1960s",
+    "tags": ["Muziki", "Sanaa", "Kenya", "Ukombozi"],
+    "description": "Mwanamuziki na msanii mashuhuri wa Kenya ambaye muziki wake ulitumika kama nguvu ya kuhamasisha harakati za ukombozi na fahari za Kiafrika.",
     "image": "assets/images/sal-davis.jpg",
-    "description": "Mwanamuziki mashuhuri wa Kenya."
+    "date": "2024-06-05",
+    "featured": false
   },
   {
     "id": 11,
     "title": "Wasomaji wa Zanzibar",
     "category": "Vitabu",
+    "year": "2010s",
+    "tags": ["Zanzibar", "Wasomaji", "Abdulwahid Sykes", "Elimu"],
+    "description": "Picha ya wasomaji kutoka Zanzibar wakionesha kitabu cha 'The Life and Times of Abdulwahid Sykes' kilichoandikwa na Mohamed Said, ikionyesha upenyezaji wa kazi hiyo.",
     "image": "assets/images/zanzibar-readers.jpg",
-    "description": "Wasomaji wakionesha kitabu cha Abdulwahid Sykes."
+    "date": "2024-06-10",
+    "featured": false
   }
 ]

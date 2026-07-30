@@ -1,571 +1,346 @@
-<<<<<<< HEAD
 /* ==========================================================
    MOHAMED SAID DIGITAL HISTORICAL ARCHIVE
-   APP.JS
+   APP.JS (PREMIUM MODERN ES6+)
 ========================================================== */
 
 "use strict";
 
-/* ==========================================================
-   APPLICATION
-========================================================== */
-
 const App = {
+    data: {
+        documents: [],
+        photos: [],
+        videos: [],
+        audio: []
+    },
 
     /* ======================================================
        INITIALIZE APPLICATION
     ====================================================== */
-
     init() {
-
         this.cacheDOM();
-
         this.bindEvents();
-
+        this.initUI();
         this.loadHome();
-
     },
 
     /* ======================================================
        CACHE DOM ELEMENTS
     ====================================================== */
-
     cacheDOM() {
+        this.preloader = document.getElementById("preloader");
+        this.header = document.getElementById("header");
+        this.menuToggle = document.getElementById("menuToggle");
+        this.navbar = document.getElementById("navbar");
+        this.backToTop = document.getElementById("backToTop");
 
         this.statistics = document.querySelector("#statistics");
-
         this.featuredDocuments = document.querySelector("#featuredDocuments");
-
         this.latestDocuments = document.querySelector("#latestDocuments");
-
-        this.collections = document.querySelector("#collections");
-
-        this.featuredPhotos = document.querySelector("#featuredPhotos");
-
+        this.featuredPhotos = document.querySelector("#featuredPhotos") || document.querySelector("#photo-gallery");
         this.featuredVideos = document.querySelector("#featuredVideos");
-
         this.featuredAudio = document.querySelector("#featuredAudio");
-
-        this.loader = document.querySelector(".loader");
-
     },
 
     /* ======================================================
-       EVENTS
+       BIND EVENTS
     ====================================================== */
-
     bindEvents() {
+        window.addEventListener("load", () => this.hideLoader());
+        window.addEventListener("scroll", () => this.handleScroll());
 
-        window.addEventListener("load", () => {
+        if (this.menuToggle) {
+            this.menuToggle.addEventListener("click", () => {
+                this.navbar.classList.toggle("active");
+            });
+        }
 
-            this.hideLoader();
-
+        // Close menu when a link is clicked
+        document.querySelectorAll("#navbar a").forEach(link => {
+            link.addEventListener("click", () => {
+                this.navbar.classList.remove("active");
+            });
         });
 
+        if (this.backToTop) {
+            this.backToTop.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        }
     },
 
     /* ======================================================
-       HIDE LOADER
+       UI INTERACTIONS (Preloader, Scroll Effects, Reveal)
     ====================================================== */
+    initUI() {
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll(".reveal");
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Counter Animation
+        const counters = document.querySelectorAll("[data-count]");
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    this.animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => counterObserver.observe(counter));
+    },
+
+    handleScroll() {
+        // Header Shadow on Scroll
+        if (window.scrollY > 50) {
+            this.header.classList.add("scrolled");
+        } else {
+            this.header.classList.remove("scrolled");
+        }
+
+        // Back to top button
+        if (window.scrollY > 300) {
+            this.backToTop.style.display = "block";
+        } else {
+            this.backToTop.style.display = "none";
+        }
+    },
+
+    animateCounter(element) {
+        const target = +element.getAttribute("data-count");
+        let current = 0;
+        const increment = target / 100; // Adjust speed here
+
+        const updateCount = () => {
+            current += increment;
+            if (current < target) {
+                element.innerText = Math.ceil(current);
+                requestAnimationFrame(updateCount);
+            } else {
+                element.innerText = target;
+            }
+        };
+        updateCount();
+    },
 
     hideLoader() {
-
-        if (!this.loader) return;
-
-        this.loader.classList.add("hidden");
-
+        if (!this.preloader) return;
+        this.preloader.classList.add("hidden");
         setTimeout(() => {
-
-            this.loader.remove();
-
-        }, 500);
-
+            this.preloader.style.display = "none";
+        }, 600);
     },
 
     /* ======================================================
-       LOAD HOME
+       LOAD HOME (Fetch all data at once for performance)
     ====================================================== */
-
-        loadHome() {
-
+    async loadHome() {
         console.log("Mohamed Said Digital Historical Archive Started");
-
-        this.loadStatistics();
-
-        this.loadFeaturedDocuments();
-
-        this.loadLatestDocuments();
         
-        this.loadCollections();
-
-        this.loadFeaturedPhotos();
-
-        this.loadFeaturedVideos();
-
-        this.loadFeaturedAudio();
-
-               /* ======================================================
-       REFRESH APPLICATION
-    ====================================================== */
-
-    async refresh() {
-
-        await Promise.all([
-
-            this.loadStatistics(),
-
-            this.loadFeaturedDocuments(),
-
-            this.loadLatestDocuments(),
-
-            this.loadCollections(),
-
-            this.loadFeaturedPhotos(),
-
-            this.loadFeaturedVideos(),
-
-            this.loadFeaturedAudio()
-
-        ]);
-
-    },
-
-    /* ======================================================
-       APPLICATION INFORMATION
-    ====================================================== */
-
-    version() {
-
-        return {
-
-            name: "Mohamed Said Digital Historical Archive",
-
-            version: "1.0.0",
-
-            platform: "GitHub Pages",
-
-            author: "Mohamed Said Digital Archive"
-
-        };
-
-    }
-
-};
-
-    }
-    /* ======================================================
-       LOAD JSON FILE
-    ====================================================== */
-
-    async loadJSON(file) {
-
         try {
+            const [documents, photos, videos, audio] = await Promise.all([
+                this.loadJSON("data/documents.json"),
+                this.loadJSON("data/photos.json"),
+                this.loadJSON("data/videos.json"),
+                this.loadJSON("data/audio.json")
+            ]);
 
-            const response = await fetch(file);
+            this.data.documents = documents;
+            this.data.photos = photos;
+            this.data.videos = videos;
+            this.data.audio = audio;
 
-            if (!response.ok) {
-
-                throw new Error(`Failed to load ${file}`);
-
-            }
-
-            return await response.json();
+            // Render Data to UI
+            this.renderStatistics();
+            this.renderFeaturedDocuments();
+            this.renderLatestDocuments();
+            this.renderFeaturedPhotos();
+            this.renderFeaturedVideos();
+            this.renderFeaturedAudio();
 
         } catch (error) {
-
-            console.error(error);
-
-            return [];
-
+            console.error("Failed to initialize archive data:", error);
         }
-
     },
 
     /* ======================================================
-       LOAD STATISTICS
+       LOAD JSON HELPER
     ====================================================== */
-
-    async loadStatistics() {
-
-        const documents = await this.loadJSON("data/documents.json");
-
-        const photos = await this.loadJSON("data/photos.json");
-
-        const videos = await this.loadJSON("data/videos.json");
-
-        const audio = await this.loadJSON("data/audio.json");
-
-        const documentsCount = document.querySelector("#documentsCount");
-
-        const photosCount = document.querySelector("#photosCount");
-
-        const videosCount = document.querySelector("#videosCount");
-
-        const audioCount = document.querySelector("#audioCount");
-
-        if (documentsCount) {
-
-            documentsCount.textContent = documents.length;
-
+    async loadJSON(file) {
+        try {
+            const response = await fetch(file);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status} for ${file}`);
+            return await response.json();
+        } catch (error) {
+            console.error(`Failed to load ${file}:`, error);
+            return []; // Return empty array to prevent app crash
         }
-
-        if (photosCount) {
-
-            photosCount.textContent = photos.length;
-
-        }
-
-        if (videosCount) {
-
-            videosCount.textContent = videos.length;
-
-        }
-
-        if (audioCount) {
-
-            audioCount.textContent = audio.length;
-
-        }
-
     },
-       /* ======================================================
-       LOAD FEATURED DOCUMENTS
+
+    /* ======================================================
+       RENDER METHODS
     ====================================================== */
+    renderStatistics() {
+        const docsCount = this.data.documents.length;
+        const photosCount = this.data.photos.length;
+        const videosCount = this.data.videos.length;
+        const audioCount = this.data.audio.length;
 
-    async loadFeaturedDocuments() {
+        const setText = (id, val) => {
+            const el = document.querySelector(id);
+            if (el) el.textContent = val;
+        };
 
+        setText("#documentsCount", docsCount);
+        setText("#photosCount", photosCount);
+        setText("#videosCount", videosCount);
+        setText("#audioCount", audioCount);
+    },
+
+    renderFeaturedDocuments() {
         if (!this.featuredDocuments) return;
-
-        const documents = await this.loadJSON("data/documents.json");
-
-        const featured = documents
-            .filter(doc => doc.featured === true)
-            .slice(0, 6);
+        const featured = this.data.documents.filter(doc => doc.featured === true).slice(0, 6);
 
         if (!featured.length) {
-
-            this.featuredDocuments.innerHTML =
-                `<p class="empty-state">No featured documents found.</p>`;
-
+            this.featuredDocuments.innerHTML = `<p class="empty-state">No featured documents found.</p>`;
             return;
-
         }
 
         this.featuredDocuments.innerHTML = featured.map(doc => `
-        this.documentCard(doc))
-
             <article class="document-card">
-
                 <div class="document-image">
-
-                    <img src="${doc.cover}" alt="${doc.title}">
-
+                    <img src="${doc.cover || 'assets/images/default.jpg'}" alt="${doc.title}">
+                    ${doc.featured ? '<span class="card-ribbon">Featured</span>' : ''}
                 </div>
-
                 <div class="document-content">
-
-                    <span class="badge">${doc.category}</span>
-
-                    <h3>${doc.title}</h3>
-
-                    <p>${doc.description}</p>
-
-                    <a href="pages/document.html?id=${doc.id}"
-                       class="btn-main">
-
-                        Read More
-
+                    <span class="status-badge badge-featured">${doc.category || 'Document'}</span>
+                    <h3 class="document-title">${doc.title}</h3>
+                    <p class="document-description">${doc.description || ''}</p>
+                    <a href="pages/document.html?id=${doc.id}" class="btn btn-primary card-btn">
+                        <i class="fas fa-book-open"></i> Read More
                     </a>
-
                 </div>
-
             </article>
-
         `).join("");
-
     },
 
-    /* ======================================================
-       LOAD LATEST DOCUMENTS
-    ====================================================== */
-
-    async loadLatestDocuments() {
-
+    renderLatestDocuments() {
         if (!this.latestDocuments) return;
-
-        const documents = await this.loadJSON("data/documents.json");
-
-        const latest = [...documents]
+        const latest = [...this.data.documents]
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .slice(0, 8);
 
         if (!latest.length) {
-
-            this.latestDocuments.innerHTML =
-                `<p class="empty-state">No documents available.</p>`;
-
+            this.latestDocuments.innerHTML = `<p class="empty-state">No documents available.</p>`;
             return;
-
         }
 
         this.latestDocuments.innerHTML = latest.map(doc => `
-        this.documentCard(doc))
-
             <article class="document-card">
-
                 <div class="document-image">
-
-                    <img src="${doc.cover}" alt="${doc.title}">
-
+                    <img src="${doc.cover || 'assets/images/default.jpg'}" alt="${doc.title}">
                 </div>
-
                 <div class="document-content">
-
-                    <span class="badge">${doc.category}</span>
-
-                    <h3>${doc.title}</h3>
-
-                    <p>${doc.description}</p>
-
-                    <a href="pages/document.html?id=${doc.id}"
-                       class="btn-main">
-
-                        Read More
-
+                    <span class="status-badge badge-new">${doc.category || 'Document'}</span>
+                    <h3 class="document-title">${doc.title}</h3>
+                    <p class="document-description">${doc.description || ''}</p>
+                    <a href="pages/document.html?id=${doc.id}" class="btn btn-outline card-btn">
+                        <i class="fas fa-eye"></i> View Document
                     </a>
-
                 </div>
-
             </article>
-
         `).join("");
-
     },
-};
 
-/* ==========================================================
-   START APPLICATION
-========================================================== */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    App.init();
-
-});
-    /* ======================================================
-       LOAD FEATURED PHOTOS
-    ====================================================== */
-
-    async loadFeaturedPhotos() {
-
+    renderFeaturedPhotos() {
         if (!this.featuredPhotos) return;
-
-        const photos = await this.loadJSON("data/photos.json");
-
-        if (!photos.length) {
-
-            this.featuredPhotos.innerHTML =
-                `<p class="empty-state">No photos available.</p>`;
-
+        if (!this.data.photos.length) {
+            this.featuredPhotos.innerHTML = `<p class="empty-state">No photos available.</p>`;
             return;
-
         }
 
-        this.featuredPhotos.innerHTML = photos
-            .slice(0, 8)
-            .map(photo => `
-
-                <div class="photo-card">
-
-                    <img src="${photo.image}" alt="${photo.title}">
-
-                    <div class="photo-info">
-
-                        <h4>${photo.title}</h4>
-
-                    </div>
-
+        this.featuredPhotos.innerHTML = this.data.photos.slice(0, 8).map(photo => `
+            <div class="photo-card">
+                <img src="${photo.image || 'assets/images/default.jpg'}" alt="${photo.title}">
+                <div class="photo-overlay">
+                    <h3>${photo.title}</h3>
+                    <p>${photo.description || ''}</p>
+                    <span class="status-badge badge-featured">${photo.category || 'Photo'}</span>
                 </div>
-
-            `)
-            .join("");
-
+            </div>
+        `).join("");
     },
 
-    /* ======================================================
-       LOAD FEATURED VIDEOS
-    ====================================================== */
-
-    async loadFeaturedVideos() {
-
+    renderFeaturedVideos() {
         if (!this.featuredVideos) return;
-
-        const videos = await this.loadJSON("data/videos.json");
-
-        if (!videos.length) {
-
-            this.featuredVideos.innerHTML =
-                `<p class="empty-state">No videos available.</p>`;
-
+        if (!this.data.videos.length) {
+            this.featuredVideos.innerHTML = `<p class="empty-state">No videos available.</p>`;
             return;
-
         }
 
-        this.featuredVideos.innerHTML = videos
-            .slice(0, 6)
-            .map(video => `
-
-                <div class="video-card">
-
-                    <img src="${video.thumbnail}" alt="${video.title}">
-
-                    <div class="video-info">
-
-                        <h4>${video.title}</h4>
-
-                        <a href="${video.url}"
-                           target="_blank"
-                           class="btn-main">
-
-                            Watch
-
-                        </a>
-
-                    </div>
-
+        this.featuredVideos.innerHTML = this.data.videos.slice(0, 6).map(video => `
+            <div class="video-card">
+                <img src="${video.thumbnail || 'assets/images/default.jpg'}" alt="${video.title}">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
                 </div>
-
-            `)
-            .join("");
-
+                <div class="video-info">
+                    <h3>${video.title}</h3>
+                    <a href="${video.url}" target="_blank" class="btn btn-primary card-btn">
+                        <i class="fab fa-youtube"></i> Watch Now
+                    </a>
+                </div>
+            </div>
+        `).join("");
     },
 
-    /* ======================================================
-       LOAD FEATURED AUDIO
-    ====================================================== */
-
-    async loadFeaturedAudio() {
-
+    renderFeaturedAudio() {
         if (!this.featuredAudio) return;
-
-        const audio = await this.loadJSON("data/audio.json");
-
-        if (!audio.length) {
-
-            this.featuredAudio.innerHTML =
-                `<p class="empty-state">No audio available.</p>`;
-
+        if (!this.data.audio.length) {
+            this.featuredAudio.innerHTML = `<p class="empty-state">No audio available.</p>`;
             return;
-
         }
 
-        this.featuredAudio.innerHTML = audio
-            .slice(0, 6)
-            .map(item => `
-
-                <div class="audio-card">
-
-                    <h4>${item.title}</h4>
-
-                    <audio controls>
-
-                        <source src="${item.file}" type="audio/mpeg">
-
-                        Your browser does not support audio.
-
-                    </audio>
-
+        this.featuredAudio.innerHTML = this.data.audio.slice(0, 6).map(item => `
+            <div class="audio-card">
+                <div class="audio-icon">
+                    <i class="fas fa-headphones"></i>
                 </div>
-
-            `)
-            .join("");
-
-    },
-    /* ======================================================
-       REFRESH APPLICATION
-    ====================================================== */
-
-    async refresh() {
-
-        await Promise.all([
-
-            this.loadStatistics(),
-
-            this.loadFeaturedDocuments(),
-
-            this.loadLatestDocuments(),
-
-            this.loadCollections(),
-
-            this.loadFeaturedPhotos(),
-
-            this.loadFeaturedVideos(),
-
-            this.loadFeaturedAudio()
-
-        ]);
-
+                <div class="audio-content">
+                    <h3>${item.title}</h3>
+                    <audio controls style="width: 100%; margin-top: 10px; outline: none;">
+                        <source src="${item.file}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        `).join("");
     },
 
     /* ======================================================
        APPLICATION INFORMATION
     ====================================================== */
-
     version() {
-
         return {
-
             name: "Mohamed Said Digital Historical Archive",
-
             version: "1.0.0",
-
             platform: "GitHub Pages",
-
             author: "Mohamed Said Digital Archive"
-
         };
-
     }
-
 };
+
 /* ==========================================================
    START APPLICATION
 ========================================================== */
-
 document.addEventListener("DOMContentLoaded", () => {
-
     App.init();
-
 });
-=======
-async function loadPhotos() {
-    try {
-        const response = await fetch('data/photos.json');
-        const photos = await response.json();
-
-        const gallery = document.getElementById('photo-gallery');
-
-        if (!gallery) return;
-
-        gallery.innerHTML = "";
-
-        photos.forEach(photo => {
-            gallery.innerHTML += `
-                <div class="photo-card">
-                    <img src="${photo.image}" alt="${photo.title}">
-                    <div class="photo-content">
-                        <h3>${photo.title}</h3>
-                        <p>${photo.description}</p>
-                        <span>${photo.category}</span>
-                    </div>
-                </div>
-            `;
-        });
-
-    } catch (error) {
-        console.error("Error loading photos:", error);
-    }
-}
-
-document.addEventListener("DOMContentLoaded", loadPhotos);
->>>>>>> 316a3599 (Update homepage)

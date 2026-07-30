@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maktaba ya Video - Mohamed Said Archive</title>
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/cards.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="header">
+    <div class="container nav">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/logo.png" alt="Mohamed Said Archive" class="logo-img" />
+        <div>
+          <h2>Mohamed Said</h2>
+          <span>Digital Historical Archive</span>
+        </div>
+      </a>
+      <nav id="navbar">
+        <ul class="menu">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="documents.html">Documents</a></li>
+          <li><a href="photos.html">Photos</a></li>
+          <li><a href="videos.html" class="active">Videos</a></li>
+          <li><a href="audio.html">Audio</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+      <div class="nav-buttons">
+        <button id="menuToggle"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="hero" style="min-height: 40vh; padding: 140px 0 40px;">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="section-header reveal active">
+        <span class="section-tag">VIDEO LIBRARY</span>
+        <h1>Maktaba ya Video</h1>
+        <p>Mahojiano, documentary na makala za video za kihistoria.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEOS GRID -->
+  <section class="section" style="padding-top: 20px;">
+    <div class="container">
+      <div id="videosGrid" class="collection-grid">
+        <!-- Video zitajazwa na JavaScript -->
+      </div>
+      <div id="emptyState" class="empty-state hidden">
+        <i class="fas fa-film"></i>
+        <h3>Hakuna Video Zilizopatikana</h3>
+        <p>Samahani, hakuna video kwenye maktaba kwa sasa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h3>Mohamed Said</h3>
+          <p>Kituo cha kidijitali cha kuhifadhi na kusambaza historia ya Tanganyika.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="documents.html">Documents</a></li>
+            <li><a href="photos.html">Photos</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/share/1FFt7dNdm6/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://youtube.com/@samitungo" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://x.com/mohamedsidney" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Mohamed Said Digital Historical Archive. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/255687500699" target="_blank" class="whatsapp-float"><i class="fa-brands fa-whatsapp"></i></a>
+  <button id="backToTop"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <script>
+    // 1. UI Interactions
+    const menuToggle = document.getElementById("menuToggle");
+    const navbar = document.getElementById("navbar");
+    const backToTop = document.getElementById("backToTop");
+    const header = document.getElementById("header");
+
+    menuToggle.addEventListener("click", () => navbar.classList.toggle("active"));
+    document.querySelectorAll("#navbar a").forEach(link => {
+      link.addEventListener("click", () => navbar.classList.remove("active"));
+    });
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) header.classList.add("scrolled");
+      else header.classList.remove("scrolled");
+      if (window.scrollY > 300) backToTop.style.display = "block";
+      else backToTop.style.display = "none";
+    });
+
+    backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+    // 2. Fetch Videos Data
+    async function loadVideos() {
+      const grid = document.getElementById("videosGrid");
+      const emptyState = document.getElementById("emptyState");
+      
+      // Loading Skeleton
+      grid.innerHTML = Array(3).fill().map(() => `
+        <div class="skeleton-card" style="border-radius: 15px;">
+          <div class="skeleton skeleton-image" style="height: 200px;"></div>
+          <div class="skeleton skeleton-title" style="margin: 20px;"></div>
+          <div class="skeleton skeleton-text" style="margin: 0 20px 20px; width: 60%;"></div>
+        </div>
+      `).join('');
+
+      try {
+        const response = await fetch('../data/videos.json');
+        if (!response.ok) throw new Error("Failed to load");
+        const videos = await response.json();
+
+        if (videos.length === 0) {
+          grid.innerHTML = '';
+          emptyState.classList.remove('hidden');
+          return;
+        }
+
+        grid.innerHTML = videos.map(video => `
+          <div class="video-card">
+            <img src="../${video.thumbnail || 'assets/images/default.jpg'}" alt="${video.title}">
+            <div class="play-button">
+              <i class="fas fa-play"></i>
+            </div>
+            <div class="video-info">
+              <h3>${video.title}</h3>
+              <p>${video.description || 'Video ya kihistoria'}</p>
+              <a href="${video.url}" target="_blank" class="btn btn-primary document-link" style="margin-top: 15px;">
+                <i class="fab fa-youtube"></i> Angalia YouTube
+              </a>
+            </div>
+          </div>
+        `).join("");
+      } catch (error) {
+        console.error("Error loading videos:", error);
+        grid.innerHTML = `<p class="empty-state">Samahani, imeshindikana kupakia video. Jaribu tena baadaye.</p>`;
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", loadVideos);
+  </script>
+</body>
+</html>
