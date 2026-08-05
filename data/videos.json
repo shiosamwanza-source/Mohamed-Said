@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Mahojiano na Mohamed Said",
+    "description": "Video ya mahojiano kuhusu historia ya Tanganyika.",
+    "thumbnail": "assets/images/mohamed-said-thumb.jpg",
+    "url": "https://www.youtube.com/watch?v=XXXXXXXX"
+  },
+  {
+    "title": "Abdilatif Abdalla - Safari ya Kisiasa",
+    "description": "Makala ya kihistoria kuhusu Abdilatif Abdalla.",
+    "thumbnail": "assets/images/abdilatif-abdalla-thumb.jpg",
+    "url": "https://www.youtube.com/watch?v=YYYYYYYY"
+  },
+  {
+    "title": "Julius Nyerere Documentary",
+    "description": "Video ya kumbukumbu ya Mwalimu Julius Nyerere.",
+    "thumbnail": "assets/images/nyerere-thumb.jpg",
+    "url": "https://www.youtube.com/watch?v=ZZZZZZZZ"
+  }
+]
